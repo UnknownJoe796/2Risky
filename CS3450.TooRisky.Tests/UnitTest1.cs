@@ -9,6 +9,7 @@ namespace CS3450.TooRisky.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            Assert.IsTrue(true);
         }
     }
 }
