@@ -1,16 +1,16 @@
-﻿using Windows.System;
-using Windows.System.Collections.Generic;
-using Windows.System.Linq;
-using Windows.System.Text;
-using Windows.System.Threading.Tasks;
-using Windows.System.Xml;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
 
-namespace CS3450.TooRisky
+namespace ConsoleApplication1
 {
-    static class XML
+    class Program
     {
-        public void read()
-        {
+        static void Main(string[] args)
+        { // Create an XML reader for this file.
             using (XmlReader reader = XmlReader.Create("../../../../classic.xml"))
             {
                 while (reader.Read())
@@ -60,4 +60,5 @@ namespace CS3450.TooRisky
                 Console.ReadKey();
             }
         }
+    }
 }

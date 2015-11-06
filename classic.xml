@@ -5,159 +5,159 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthwestTerritory
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Alberta
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Kamchatka
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="NorthwestTerritory">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Alaska
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Alberta
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Greenland
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Greenland">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthwestTerritory
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Quebec
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Iceland
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="Alberta">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthwestTerritory
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Alaska
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			WesternUS
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Ontario">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthwestTerritory
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Greenland
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Alberta
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Quebec
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			WesternUS
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			EasternUS
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Quebec">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Greenland
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EasternUS
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>	
 	    <Country name="WesternUS">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Alberta
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EasternUS
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			CentralMurica
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="EasternUS">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Ontario
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Quebec
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			WesternUS
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			CentralMurica
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="CentralMurica">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			WesternUS
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EasternUS
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Venezuela
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	</Zone>
@@ -169,138 +169,138 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Greenland
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Scandinavia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			GreatBritain
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="Scandinavia">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Iceland
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			GreatBritain
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			NorthEurope
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Ukraine">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Scandinavia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NorthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthEurope
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Ural
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			Afghanistan
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			MiddleEast
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="GreatBritain">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Iceland
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Scandinavia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NorthEurope
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			WestEurope
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="NorthEurope">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			GreatBritain
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Scandinavia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			WestEurope
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			SouthEurope
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="WestEurope">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			GreatBritain
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NorthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NorthAfrica
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>	
 	    <Country name="SouthEurope">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			WestEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NorthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			NorthAfrica
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			Egypt
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			MiddleEast
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	</Zone>
@@ -312,228 +312,228 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Afghanistan
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Siberia
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="Siberia">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Ural
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Mongolia
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Irkutsk
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			Yakutsk
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Yakutsk">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Siberia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Irkutsk
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Kamchatka
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="Kamchatka">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Alaska
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Yakutsk
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Irkutsk
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Mongolia
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			Japan
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Irkutsk">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Siberia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Yakutsk
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Kamchatka
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Mongolia
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Mongolia">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Siberia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Irkutsk
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Kamchatka
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Japan
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>	
 	    <Country name="Japan">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Kamchatka
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Mongolia
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Afghanistan">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ural
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			India
-	     		</Country>
-	     		<Country>
+	     		</AdjCountry>
+	     		<AdjCountry>
 	     			MiddleEast
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="China">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Afghanistan
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ural
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Siberia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Mongolia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Siam
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			India
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="MiddleEast">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Egypt
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Ukraine
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Afghanistan
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			India
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="India">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			MiddleEast
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Afghanistan
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Siam
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Siam">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			China
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			India
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Indonesia
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	</Zone>
@@ -545,60 +545,60 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			CentralMurica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Peru
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Brazil
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="Peru">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Venzuela
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Brazil
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Argentina
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Brazil">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Venzuela
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Peru
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Argentina
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			NorthAfrica
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="Argentina">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Peru
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Brazil
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	</Zone>
@@ -609,102 +609,102 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Brazil
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			WestEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Egypt
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Congo
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="Egypt">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthEurope
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			MiddleEast
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			EastAfrica
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Congo">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NorthAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			SouthAfrica
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="EastAfrica">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Egypt
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			MiddleEast
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Congo
-	       		</Country>
-	     		<Country>
+	       		</AdjCountry>
+	     		<AdjCountry>
 	     			Madagascar
-	     		</Country>
+	     		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="SouthAfrica">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Congo
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			Madagascar
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	    <Country name="Madagascar">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			SouthAfrica
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAfrica
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>	
 	</Zone>
@@ -715,57 +715,57 @@
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Siam
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NewGuinea
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			WestAustralia
-	       		</Country>
+	       		</AdjCountry>
 	       </Adjacent>
 	    </Country>
 	   	<Country name="NewGuinea">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Indonesia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			WestAustralia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAustralia
-	       		</Country>   		
+	       		</AdjCountry>   		
 	        </Adjacent>
 	    </Country>
 	    <Country name="WestAustralia">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			Indonesia
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			NewGuinea
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			EastAustralia
-	       		</Country>
+	       		</AdjCountry>
 	        </Adjacent>
 	    </Country>
 	   	<Country name="EastAustralia">
 	       <X>x</X>
 	       <Y>y</Y>
 	       <Adjacent>
-	       		<Country>
+	       		<AdjCountry>
 	       			NewGuinea
-	       		</Country>
-	       		<Country>
+	       		</AdjCountry>
+	       		<AdjCountry>
 	       			WestAustralia
-	       		</Country>	       		
+	       		</AdjCountry>	       		
 	        </Adjacent>
 	    </Country>
 	</Zone>
