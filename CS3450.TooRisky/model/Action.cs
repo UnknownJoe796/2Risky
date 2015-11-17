@@ -18,6 +18,7 @@ namespace CS3450.TooRisky.model
 
         /// <summary>
         /// The name of the country that this action originates from.
+        /// If this field is empty, the move is a placement.
         /// </summary>
         public string FromName = "";
 
@@ -43,6 +44,7 @@ namespace CS3450.TooRisky.model
         /// <returns>The country that this attack originates from.</returns>
         public Country From(Game game)
         {
+            if (FromName == "") return null;
             return game.countries[FromName];
         }
 
@@ -54,6 +56,56 @@ namespace CS3450.TooRisky.model
         public Country To(Game game)
         {
             return game.countries[ToName];
+        }
+
+        /// <summary>
+        /// Executes the given move.  This should only be called on the server.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns>Whether the move is valid and was executed.</returns>
+        public bool Execute(Game game)
+        {
+            Country to = To(game);
+            Country from = From(game);
+            Player player = Player(game);
+
+            if(from == null)
+            {
+                //This action is a placement
+                if (to.OwnedByName == player.Name) return false;
+                if (player.UnitsToPlace <= 0) return false;
+                player.UnitsToPlace--;
+                to.Units++;
+            }
+            else
+            {
+                if (from.OwnedByName != player.Name) return false;
+                if(to.OwnedByName == player.Name)
+                {
+                    //This action is a move
+                    if (player.UnitsToMove <= 0) return false;
+                    player.UnitsToMove--;
+                    from.Units--;
+                    to.Units++;
+                }
+                else
+                {
+                    //This action is an attack
+                    Random random = new Random();
+                    //50% chance
+                    if(random.Next(0, 1) == 1)
+                    {
+                        //Successful attack
+                        from.Units--;
+                    }
+                    else
+                    {
+                        //Unsuccessful attack
+                        to.Units--;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
