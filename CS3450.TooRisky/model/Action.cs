@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// An action that a player can take, whether it is a move or an attack.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// Represents one player in the game.
@@ -37,6 +37,11 @@ namespace CS3450.TooRisky.model
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
         public int UnitsToMove = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TotalUnits = 0; //stub
 
     }
 }
