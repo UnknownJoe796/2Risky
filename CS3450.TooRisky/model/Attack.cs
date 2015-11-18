@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace CS3450.TooRisky.model
 {
     /// <summary>
-    /// An action that a player can take, whether it is a move or an attack.
+    /// An attack that a player could make.
     /// </summary>
-    public class Action
+    public class Attack
     {
         /// <summary>
         /// The name of the player that could make the move.
@@ -44,7 +44,6 @@ namespace CS3450.TooRisky.model
         /// <returns>The country that this attack originates from.</returns>
         public Country From(Game game)
         {
-            if (FromName == "") return null;
             return game.countries[FromName];
         }
 
@@ -69,42 +68,22 @@ namespace CS3450.TooRisky.model
             Country from = From(game);
             Player player = Player(game);
 
-            if(from == null)
+            if (from.OwnedByName != player.Name) return false;
+            if (to.OwnedByName == player.Name) return false;
+
+            Random random = new Random();
+            //50% chance
+            if (random.Next(0, 1) == 1)
             {
-                //This action is a placement
-                if (to.OwnedByName == player.Name) return false;
-                if (player.UnitsToPlace <= 0) return false;
-                player.UnitsToPlace--;
-                to.Units++;
+                //Successful attack
+                from.Units--;
             }
             else
             {
-                if (from.OwnedByName != player.Name) return false;
-                if(to.OwnedByName == player.Name)
-                {
-                    //This action is a move
-                    if (player.UnitsToMove <= 0) return false;
-                    player.UnitsToMove--;
-                    from.Units--;
-                    to.Units++;
-                }
-                else
-                {
-                    //This action is an attack
-                    Random random = new Random();
-                    //50% chance
-                    if(random.Next(0, 1) == 1)
-                    {
-                        //Successful attack
-                        from.Units--;
-                    }
-                    else
-                    {
-                        //Unsuccessful attack
-                        to.Units--;
-                    }
-                }
+                //Unsuccessful attack
+                to.Units--;
             }
+
             return true;
         }
     }
