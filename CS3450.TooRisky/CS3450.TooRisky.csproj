@@ -102,10 +102,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Action.cs" />
+    <Compile Include="Model\Attack.cs" />
     <Compile Include="Model\Continent.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\Move.cs" />
+    <Compile Include="Model\Placement.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
