@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// Represents a continent in the game.
@@ -36,7 +36,7 @@ namespace CS3450.TooRisky.model
             List<Country> countries = new List<Country>();
             foreach (string name in CountryNames)
             {
-                countries.Add(game.countries[name]);
+                countries.Add(game.Countries[name]);
             }
             return countries;
         }
