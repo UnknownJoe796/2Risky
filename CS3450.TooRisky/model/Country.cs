@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// Represents a country in the game.
@@ -24,7 +24,7 @@ namespace CS3450.TooRisky.model
         /// <summary>
         /// The number of the units on this country.
         /// </summary>
-        public int Units = 0;
+        public int Units = 1;
 
         /// <summary>
         /// The name of the player that owns this country.
@@ -42,6 +42,12 @@ namespace CS3450.TooRisky.model
         public int Y = 0;
 
         /// <summary>
+        /// Flag indicating if the country was taken over, in which case the player can move as many units as they want into this country during this turn.
+        /// This flag should be reset to false at the end of every turn.
+        /// </summary>
+        public bool JustTakenOver = false;
+
+        /// <summary>
         /// Retrieves a list of countries adjacent to this one.
         /// </summary>
         /// <param name="game">The game that this country is a part of.</param>
@@ -51,7 +57,7 @@ namespace CS3450.TooRisky.model
             List<Country> countries = new List<Country>();
             foreach(string name in AdjacentCountryNames)
             {
-                countries.Add(game.countries[name]);
+                countries.Add(game.Countries[name]);
             }
             return countries;
         }
@@ -63,7 +69,65 @@ namespace CS3450.TooRisky.model
         /// <returns>The player that owns this country.</returns>
         public Player OwnedBy(Game game)
         {
-            return game.players[OwnedByName];
+            return game.Players[OwnedByName];
+        }
+
+        /// <summary>
+        /// Returns all of the valid attacks that can be made from this country.
+        /// </summary>
+        /// <param name="game">The game that this country belongs to.</param>
+        /// <returns>A list of the legal attacks that can be made from this country.</returns>
+        public List<Attack> Attacks(Game game)
+        {
+            var actions = new List<Attack>();
+
+            foreach(var country in AdjacentCountries(game))
+            {
+                if(country.OwnedByName != OwnedByName)
+                {
+                    var attack = new Attack()
+                    {
+                        PlayerName = OwnedByName,
+                        FromName = Name,
+                        ToName = country.Name
+                    };
+                    if (attack.IsValid(game))
+                    {
+                        actions.Add(attack);
+                    }
+                }
+            }
+
+            return actions;
+        }
+
+        /// <summary>
+        /// Returns all of the valid moves that can be made from this country.
+        /// </summary>
+        /// <param name="game">The game that this country belongs to.</param>
+        /// <returns>A list of the legal moves that can be made from this country.</returns>
+        public List<Move> Moves(Game game)
+        {
+            var actions = new List<Move>();
+
+            foreach (var country in AdjacentCountries(game))
+            {
+                if (country.OwnedByName == OwnedByName)
+                {
+                    var move = new Move()
+                    {
+                        PlayerName = OwnedByName,
+                        FromName = Name,
+                        ToName = country.Name
+                    };
+                    if (move.IsValid(game))
+                    {
+                        actions.Add(move);
+                    }
+                }
+            }
+
+            return actions;
         }
     }
 }

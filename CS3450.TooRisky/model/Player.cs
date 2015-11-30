@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// Represents one player in the game.
@@ -46,7 +46,7 @@ namespace CS3450.TooRisky.model
         public List<Country> CountriesOwned(Game game)
         {
             List<Country> countries = new List<Country>();
-            foreach (Country country in game.countries.Values)
+            foreach (Country country in game.Countries.Values)
             {
                 if(country.OwnedByName == Name)
                 {
@@ -64,7 +64,7 @@ namespace CS3450.TooRisky.model
         public List<Continent> ContinentsOwned(Game game)
         {
             List<Continent> continents = new List<Continent>();
-            foreach (Continent continent in game.continents.Values)
+            foreach (Continent continent in game.Continents.Values)
             {
                 if (continent.OwnedByName(game, Name))
                 {

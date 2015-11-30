@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// An action that a player can take, whether it is a move or an attack.
     /// </summary>
-    public class Placement
+    public class Placement : Action
     {
         /// <summary>
         /// The name of the player that could make the move.
@@ -26,9 +26,19 @@ namespace CS3450.TooRisky.model
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The player that could make this move.</returns>
-        public Player Player(Game game)
+        public Player GetPlayer(Game game)
         {
-            return game.players[PlayerName];
+            return game.Players[PlayerName];
+        }
+
+        /// <summary>
+        /// The country that this action originates from, in this case null.
+        /// </summary>
+        /// <param name="game">The game that this action is a part of.</param>
+        /// <returns>null</returns>
+        public Country GetFrom(Game game)
+        {
+            return null;
         }
 
         /// <summary>
@@ -36,9 +46,25 @@ namespace CS3450.TooRisky.model
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The country that this action is targeting.</returns>
-        public Country To(Game game)
+        public Country GetTo(Game game)
         {
-            return game.countries[ToName];
+            return game.Countries[ToName];
+        }
+
+        /// <summary>
+        /// Returns if the move is valid.
+        /// </summary>
+        /// <param name="game">The game the move belongs to.</param>
+        /// <returns>If the move is valid.</returns>
+        public bool IsValid(Game game)
+        {
+            Country to = GetTo(game);
+            Player player = GetPlayer(game);
+
+            if (to.OwnedByName == player.Name) return false;
+            if (player.UnitsToPlace <= 0) return false;
+            
+            return true;
         }
 
         /// <summary>
@@ -46,14 +72,26 @@ namespace CS3450.TooRisky.model
         /// </summary>
         /// <param name="game"></param>
         /// <returns>Whether the move is valid and was executed.</returns>
-        public bool Execute(Game game)
+        public bool Execute(Game game, Random random)
         {
-            Country to = To(game);
-            Player player = Player(game);
-            if (to.OwnedByName == player.Name) return false;
-            if (player.UnitsToPlace <= 0) return false;
+            if (!IsValid(game)) return false;
+
+            Country to = GetTo(game);
+            Player player = GetPlayer(game);
+
             player.UnitsToPlace--;
             to.Units++;
+
+            return true;
+        }
+
+        public override bool Equals(System.Object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Placement)) return false;
+            var other = obj as Placement;
+            if (PlayerName != other.PlayerName) return false;
+            if (ToName != other.ToName) return false;
             return true;
         }
     }
