@@ -89,8 +89,8 @@ namespace CS3450.TooRisky.Model
 
             if(random == null) random = new Random();
 
-            //50% chance
-            if (random.Next(0, 1) == 1)
+            //45%% chance, accounting for defender winning ties
+            if (random.NextDouble() <= 0.45)
             {
                 //Successful attack
                 from.Units--;
