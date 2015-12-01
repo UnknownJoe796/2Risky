@@ -58,9 +58,11 @@ namespace CS3450.TooRisky
             //public event PropertyChangedEventHandler PropertyChanged;   //TODO!!!
         }
 
-        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        private async void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 
+            GameLobbyDialog gameLobbyDialog = new GameLobbyDialog();
+            await gameLobbyDialog.ShowAsync();
         }
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
