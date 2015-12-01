@@ -39,9 +39,40 @@ namespace CS3450.TooRisky.Model
         public int UnitsToMove = 0;
 
         /// <summary>
-        /// 
+        /// Returns a list of the countries that this player owns.
         /// </summary>
-        public int TotalUnits = 0; //stub
+        /// <param name="game">The game that this player belongs to.</param>
+        /// <returns>A list of the countries that this player owns.</returns>
+        public List<Country> CountriesOwned(Game game)
+        {
+            List<Country> countries = new List<Country>();
+            foreach (Country country in game.Countries.Values)
+            {
+                if(country.OwnedByName == Name)
+                {
+                    countries.Add(country);
+                }
+            }
+            return countries;
+        }
+
+        /// <summary>
+        /// Returns a list of the continents that this player owns.
+        /// </summary>
+        /// <param name="game">The game that this player belongs to.</param>
+        /// <returns>A list of the continents that this player owns.</returns>
+        public List<Continent> ContinentsOwned(Game game)
+        {
+            List<Continent> continents = new List<Continent>();
+            foreach (Continent continent in game.Continents.Values)
+            {
+                if (continent.OwnedByName(game, Name))
+                {
+                    continents.Add(continent);
+                }
+            }
+            return continents;
+        }
 
     }
 }

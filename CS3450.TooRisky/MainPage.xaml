@@ -8,10 +8,10 @@
     mc:Ignorable="d">
     <Page.TopAppBar>
         <CommandBar>
-            <CommandBar.Content>
+            <!--            <CommandBar.Content>
                 <Grid>
-                    <!--<TextBlock Text="New Game" ToolTipService.ToolTip="Starts a new game. Leaves current game." FontSize="26.667" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                -->
+                    ~1~<TextBlock Text="New Game" ToolTipService.ToolTip="Starts a new game. Leaves current game." FontSize="26.667" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                @1@
                     <ListView x:Name="PlayerList"
                              ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                 ScrollViewer.HorizontalScrollMode="Enabled"                  
@@ -27,12 +27,12 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-            </CommandBar.Content>
+            </CommandBar.Content>-->
             <AppBarButton x:Name="NewGameButton" Icon="NewWindow" Label="New Game" Click="NewGameButton_Click"></AppBarButton>
             <AppBarButton x:Name="ForfeitButton" Icon="Cancel" Label="Forfeit"></AppBarButton>
             <AppBarButton x:Name="GameLogButton" Icon="List" Label="Game Log" Click="HelpButton_Click"/>
             <AppBarButton x:Name="HelpButton" Icon="Help" Label="Help" Click="HelpButton_Click"/>
-            
+
             <AppBarButton x:Name="AboutButton" Icon="Character" Label="About" Click="AboutButton_Click"/>
             <AppBarButton x:Name="EndTurnButton" Icon="Accept" Label="End Turn"/>
         </CommandBar>
@@ -40,6 +40,10 @@
 
     <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}">
         <Image x:Name="image" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top"  Source="Assets/RiskMap.png" Height="1033"/>
+        
+        
+        <Grid x:Name="PlayerStats" HorizontalAlignment="Left" Height="363" Margin="0,609,0,0" VerticalAlignment="Top" Width="306" RenderTransformOrigin="-0.272,1.026" Background="LightGray">
+        </Grid>
 
     </Grid>
 </Page>
