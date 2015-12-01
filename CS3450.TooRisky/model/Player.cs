@@ -56,6 +56,12 @@ namespace CS3450.TooRisky.Model
             return countries;
         }
 
+        public int TotalUnits(Game game)
+        {
+            var ct = (from a in CountriesOwned(game) select a.Units).Sum();
+            return ct;
+        }
+
         /// <summary>
         /// Returns a list of the continents that this player owns.
         /// </summary>
