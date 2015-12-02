@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS3450.TooRisky.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace CS3450.TooRisky
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            XML xml = new XML();
+            Game game = xml.read();
         }
 
         /// <summary>

@@ -99,7 +99,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -112,7 +111,7 @@
     <Compile Include="Model\Placement.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XML.cs" />
+    <Compile Include="Init\XML.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -121,6 +120,7 @@
     <None Include="CS3450.TooRisky_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\classic.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
