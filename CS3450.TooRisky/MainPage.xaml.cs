@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using CS3450.TooRisky.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Windows.UI;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -31,12 +32,25 @@ namespace CS3450.TooRisky
         public MainPage()
         {
             this.InitializeComponent();
+            Map.Width = this.Width;
+            Map.InvalidateArrange();
             this.ViewModel = new PlayerViewModel();
+            this.SizeChanged += MainPage_SizeChanged;
+
+            var b = new Button
+            {
+                Content = "11",
+                Margin = new Thickness(50, 50, 0, 0),
+                Background = new SolidColorBrush(Colors.Green)
+            };
+            MainGrid.Children.Add(b);
         }
 
-        public void AddPlayers()
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-           
+            this.Width = 1280;
+            this.Height = 720;
+            this.InitializeComponent();
         }
 
         public void UpdateUi()
@@ -50,8 +64,8 @@ namespace CS3450.TooRisky
 
             public PlayerViewModel()
             {
-                this.Players.Add(new Player() { Name = "Test 1", TotalUnits = 69 });
-                this.Players.Add(new Player() { Name = "Test 2", TotalUnits = 50 });
+                this.Players.Add(new Player() { Name = "Test 1" });
+                this.Players.Add(new Player() { Name = "Test 2" });
                 //todo
             }
 
@@ -63,6 +77,17 @@ namespace CS3450.TooRisky
             //TODO 
             GameLobbyDialog gameLobbyDialog = new GameLobbyDialog();
             await gameLobbyDialog.ShowAsync();
+        }
+
+        public void InitGame()
+        {
+
+
+            //Adds country buttons to the view
+            foreach (var c in Game.Instance.Countries)
+            {
+                MainGrid.Children.Add(c.Value.Button);
+            }
         }
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)

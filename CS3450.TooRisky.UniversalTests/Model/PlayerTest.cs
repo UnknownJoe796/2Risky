@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.UniversalTests.Model
+namespace CS3450.TooRisky.Tests.Model
 {
     [TestClass]
     public class PlayerTest
@@ -15,7 +15,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
         public void CountriesOwned()
         {
             Game game = new GameTest().MakeExampleGame();
-            var owned = game.Players["Player One"].CountriesOwned(game);
+            var owned = game.Players[PlayerNumber.P1].CountriesOwned;
             Assert.IsTrue(owned.Contains(game.Countries["Testistan"]));
             Assert.IsTrue(owned.Contains(game.Countries["Testlyvania"]));
             Assert.IsFalse(owned.Contains(game.Countries["Testanbul"]));
@@ -25,7 +25,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
         public void ContinentsOwned()
         {
             Game game = new GameTest().MakeExampleGame();
-            var owned = game.Players["Player One"].ContinentsOwned(game);
+            var owned = game.Players[PlayerNumber.P1].ContinentsOwned;
             Assert.IsTrue(owned.Contains(game.Continents["Testartica"]));
             Assert.IsFalse(owned.Contains(game.Continents["Testarica"]));
         }

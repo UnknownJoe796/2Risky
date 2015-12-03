@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace CS3450.TooRisky.Model
 {
@@ -11,10 +12,13 @@ namespace CS3450.TooRisky.Model
     /// </summary>
     public class Player
     {
+
         /// <summary>
         /// The name of this player.
         /// </summary>
         public string Name = "";
+
+        public PlayerNumber PlayerNumber = PlayerNumber.None;
 
         /// <summary>
         /// The color that represents this player.
@@ -37,47 +41,58 @@ namespace CS3450.TooRisky.Model
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
         public int UnitsToMove = 0;
+             
 
         /// <summary>
         /// Returns a list of the countries that this player owns.
         /// </summary>
-        /// <param name="game">The game that this player belongs to.</param>
         /// <returns>A list of the countries that this player owns.</returns>
-        public List<Country> CountriesOwned(Game game)
+        public List<Country> CountriesOwned
         {
-            List<Country> countries = new List<Country>();
-            foreach (Country country in game.Countries.Values)
+            get
             {
-                if(country.OwnedByName == Name)
+                List<Country> countries = new List<Country>();
+                foreach (Country country in Game.Instance.Countries.Values)
                 {
-                    countries.Add(country);
+                    if (country.OwnedBy == PlayerNumber)
+                    {
+                        countries.Add(country);
+                    }
                 }
+                return countries;
             }
-            return countries;
-        }
-
-        public int TotalUnits(Game game)
-        {
-            var ct = (from a in CountriesOwned(game) select a.Units).Sum();
-            return ct;
         }
 
         /// <summary>
         /// Returns a list of the continents that this player owns.
         /// </summary>
-        /// <param name="game">The game that this player belongs to.</param>
         /// <returns>A list of the continents that this player owns.</returns>
-        public List<Continent> ContinentsOwned(Game game)
+        public List<Continent> ContinentsOwned
         {
-            List<Continent> continents = new List<Continent>();
-            foreach (Continent continent in game.Continents.Values)
+            get
             {
-                if (continent.OwnedByName(game, Name))
+                List<Continent> continents = new List<Continent>();
+                foreach (Continent continent in Game.Instance.Continents.Values)
                 {
-                    continents.Add(continent);
+                    if (continent.OwnedByName(Game.Instance, PlayerNumber))
+                    {
+                        continents.Add(continent);
+                    }
                 }
+                return continents;
             }
-            return continents;
+        }
+
+        /// <summary>
+        /// Returns total num of units owned by player.
+        /// </summary>
+        public int TotalUnits
+        {
+            get
+            {
+                var ct = (from a in CountriesOwned select a.Units).Sum();
+                return ct;
+            }
         }
 
     }

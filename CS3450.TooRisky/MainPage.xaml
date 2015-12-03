@@ -5,7 +5,7 @@
     xmlns:local="using:CS3450.TooRisky"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Width="1280" Height="720" MaxWidth="1281" MaxHeight="721" MinWidth="1279" MinHeight="719" Foreground="White">
     <Page.TopAppBar>
         <CommandBar>
             <!--            <CommandBar.Content>
@@ -39,10 +39,11 @@
     </Page.TopAppBar>
 
     <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}">
-        <Image x:Name="image" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top"  Source="Assets/RiskMap.png" Height="1033"/>
-        
-        
-        <Grid x:Name="PlayerStats" HorizontalAlignment="Left" Height="363" Margin="0,609,0,0" VerticalAlignment="Top" Width="306" RenderTransformOrigin="-0.272,1.026" Background="LightGray">
+        <Image x:Name="Map" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"  Source="Assets/RiskMap.png"  Stretch="Fill"/>
+
+
+        <Grid x:Name="PlayerStats" HorizontalAlignment="Left" Height="350" Margin="-20,371
+              ,0,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="-0.272,1.026" Background="LightGray">
         </Grid>
 
     </Grid>

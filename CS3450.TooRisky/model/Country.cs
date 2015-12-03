@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace CS3450.TooRisky.Model
 {
@@ -29,7 +33,7 @@ namespace CS3450.TooRisky.Model
         /// <summary>
         /// The name of the player that owns this country.
         /// </summary>
-        public string OwnedByName = "";
+        public PlayerNumber OwnedBy;
 
         /// <summary>
         /// The graphical X coordinate of the center of this country.
@@ -47,29 +51,47 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         public bool JustTakenOver = false;
 
-        /// <summary>
+        public Button Button { get; set; }
+
+        public Country()
+        {
+            //CreateButton();
+        }
+
+        private async void CreateButton()
+        {
+            var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+            await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Button = new Button
+                {
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Content = Units.ToString(),
+                    Margin = new Thickness(Convert.ToDouble(X), Convert.ToDouble(Y), 0.0, 0.0)
+                };
+            });
+        }
+
+        public void UpdateButtonProps(Brush bgColor)
+        {
+            Button.Content = Units.ToString();
+            Button.Background = bgColor;
+        }
+
+    /// <summary>
         /// Retrieves a list of countries adjacent to this one.
         /// </summary>
         /// <param name="game">The game that this country is a part of.</param>
         /// <returns>A list of countries adjacent to this one.</returns>
-        public List<Country> AdjacentCountries(Game game)
+        public List<Country> AdjacentCountries()
         {
             List<Country> countries = new List<Country>();
             foreach(string name in AdjacentCountryNames)
             {
-                countries.Add(game.Countries[name]);
+                countries.Add(Game.Instance.Countries[name]);
             }
             return countries;
-        }
-
-        /// <summary>
-        /// Retrieves the player object that owns this country.
-        /// </summary>
-        /// <param name="game">The game that this country is a part of.</param>
-        /// <returns>The player that owns this country.</returns>
-        public Player OwnedBy(Game game)
-        {
-            return game.Players[OwnedByName];
         }
 
         /// <summary>
@@ -77,21 +99,21 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game that this country belongs to.</param>
         /// <returns>A list of the legal attacks that can be made from this country.</returns>
-        public List<Attack> Attacks(Game game)
+        public List<Attack> Attacks()
         {
             var actions = new List<Attack>();
 
-            foreach(var country in AdjacentCountries(game))
+            foreach(var country in AdjacentCountries())
             {
-                if(country.OwnedByName != OwnedByName)
+                if(country.OwnedBy != OwnedBy)
                 {
                     var attack = new Attack()
                     {
-                        PlayerName = OwnedByName,
+                        PlayerNumber = OwnedBy,
                         FromName = Name,
                         ToName = country.Name
                     };
-                    if (attack.IsValid(game))
+                    if (attack.IsValid())
                     {
                         actions.Add(attack);
                     }
@@ -106,21 +128,21 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game that this country belongs to.</param>
         /// <returns>A list of the legal moves that can be made from this country.</returns>
-        public List<Move> Moves(Game game)
+        public List<Move> Moves()
         {
             var actions = new List<Move>();
 
-            foreach (var country in AdjacentCountries(game))
+            foreach (var country in AdjacentCountries())
             {
-                if (country.OwnedByName == OwnedByName)
+                if (country.OwnedBy == OwnedBy)
                 {
                     var move = new Move()
                     {
-                        PlayerName = OwnedByName,
+                        PlayerNumber = OwnedBy,
                         FromName = Name,
                         ToName = country.Name
                     };
-                    if (move.IsValid(game))
+                    if (move.IsValid())
                     {
                         actions.Add(move);
                     }
