@@ -10,7 +10,8 @@ namespace CS3450.TooRisky.Model
 {
     static class Constants
     {
-
+        public static Brush AttackColor = new SolidColorBrush(Colors.DarkRed);
+        public static Brush MoveColor = new SolidColorBrush(Colors.DarkBlue);
         public static Brush Color(this PlayerNumber player)
         {
             Color c;

@@ -51,34 +51,6 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         public bool JustTakenOver = false;
 
-        public Button Button { get; set; }
-
-        public Country()
-        {
-            //CreateButton();
-        }
-
-        private async void CreateButton()
-        {
-            var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
-            await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Button = new Button
-                {
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Content = Units.ToString(),
-                    Margin = new Thickness(Convert.ToDouble(X), Convert.ToDouble(Y), 0.0, 0.0)
-                };
-            });
-        }
-
-        public void UpdateButtonProps(Brush bgColor)
-        {
-            Button.Content = Units.ToString();
-            Button.Background = bgColor;
-        }
-
     /// <summary>
         /// Retrieves a list of countries adjacent to this one.
         /// </summary>

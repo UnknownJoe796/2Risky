@@ -16,6 +16,9 @@ using CS3450.TooRisky.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Windows.UI;
+using CS3450.TooRisky.Views;
+using System.Linq;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,24 +29,16 @@ namespace CS3450.TooRisky
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        Game game;
-        public PlayerViewModel ViewModel;
-        
+        private List<CountryController> _countryControllers;
+
         public MainPage()
         {
             this.InitializeComponent();
             Map.Width = this.Width;
             Map.InvalidateArrange();
-            this.ViewModel = new PlayerViewModel();
             this.SizeChanged += MainPage_SizeChanged;
-
-            var b = new Button
-            {
-                Content = "11",
-                Margin = new Thickness(50, 50, 0, 0),
-                Background = new SolidColorBrush(Colors.Green)
-            };
-            MainGrid.Children.Add(b);
+            _countryControllers = new List<CountryController>();
+            NewGameButton_Click(this, null);
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -58,36 +53,70 @@ namespace CS3450.TooRisky
 
         }
 
-        public class PlayerViewModel
-        {
-            public ObservableCollection<Player> Players = new ObservableCollection<Player>();
-
-            public PlayerViewModel()
-            {
-                this.Players.Add(new Player() { Name = "Test 1" });
-                this.Players.Add(new Player() { Name = "Test 2" });
-                //todo
-            }
-
-            //public event PropertyChangedEventHandler PropertyChanged;   //TODO!!!
-        }
 
         private async void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO 
-            GameLobbyDialog gameLobbyDialog = new GameLobbyDialog();
-            await gameLobbyDialog.ShowAsync();
+            var content = new ContentDialog()
+            {
+                Title = "New Game",
+                Content = "What kind of game would you like to play?",
+                PrimaryButtonText = "Local",
+                SecondaryButtonText = "Network",
+                IsSecondaryButtonEnabled = false
+            };
+
+            //Local game nested ass lambdas
+            content.PrimaryButtonClick += async (dialog, args) =>
+            {
+                content.Hide();
+                var a = new LocalGameDialog();
+                a.PrimaryButtonClick += async (contentDialog, eventArgs) =>
+                {
+                    var c = contentDialog as LocalGameDialog;
+                    if (c.PlayerNames.Count(p => p.Text == string.Empty) > 4)
+                    {
+                        a.Hide();
+                        await new MessageDialog("At least 2 players must be added").ShowAsync();
+                        NewGameButton_Click(this, null);
+                    }
+                    else
+                    {
+                        var players = new List<Player>();
+                        foreach (var p in c.PlayerNames.Where(p => p.Text != string.Empty))
+                        {
+                            System.Diagnostics.Debug.WriteLine("Adding player: " + p.Text);
+                            players.Add(new Player() {Name = p.Text});
+                        }
+                        InitGame(players);
+                    }
+                };
+                a.SecondaryButtonClick += (sender1, clickEventArgs) =>
+                {
+                    a.Hide();
+                    NewGameButton_Click(this, null);
+                };
+                await a.ShowAsync();
+            };
+            await content.ShowAsync();
+            /*GameLobbyDialog gameLobbyDialog = new GameLobbyDialog();
+            await gameLobbyDialog.ShowAsync();*/
         }
 
-        public void InitGame()
+        public void InitGame(List<Player> players)
         {
 
-
-            //Adds country buttons to the view
+            Game.Instance = new XML().Read();
+            foreach (var p in players)
+            {
+                Game.Instance.AddPlayer(p);
+            }
+            Game.Instance.RandomlyAssignCountries();
             foreach (var c in Game.Instance.Countries)
             {
-                MainGrid.Children.Add(c.Value.Button);
+                _countryControllers.Add(new CountryController(c.Key));
+                MainGrid.Children.Add(_countryControllers.Last().Button);
             }
+
         }
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
@@ -106,9 +135,26 @@ namespace CS3450.TooRisky
             await cd.ShowAsync();
         }
 
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        private async void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            string content = "Lorem";
+            ContentDialog cd = new ContentDialog()
+            {
+                Title = "About",
+                Width = 500,
+                Height = 500,
+                Content = content,
+                PrimaryButtonText = "OK"
+
+            };
+
+            await cd.ShowAsync();
+        }
+
+        private void MainGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
+            Coord.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
         }
     }
 }
