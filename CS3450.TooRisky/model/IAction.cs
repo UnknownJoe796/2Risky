@@ -9,35 +9,35 @@ namespace CS3450.TooRisky.Model
     /// <summary>
     /// An action the player can take.
     /// </summary>
-    public interface Action
+    public interface IAction
     {
         /// <summary>
         /// The player that could make this action.
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The player that could make this move.</returns>
-        Player GetPlayer(Game game);
+        Player GetPlayer();
 
         /// <summary>
         /// The country that this action originates from.
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The country that this attack originates from.</returns>
-        Country GetFrom(Game game);
+        Country GetFrom();
 
         /// <summary>
         /// The country that this action is targeting.
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The country that this action is targeting.</returns>
-        Country GetTo(Game game);
+        Country GetTo();
 
         /// <summary>
         /// Returns if the move is valid.
         /// </summary>
         /// <param name="game">The game the move belongs to.</param>
         /// <returns>If the move is valid.</returns>
-        bool IsValid(Game game);
+        bool IsValid();
 
         /// <summary>
         /// Executes the given action.  This should only be called on the server.
@@ -45,6 +45,6 @@ namespace CS3450.TooRisky.Model
         /// <param name="game"></param>
         /// <param name="random">The random number generator to use.</param>
         /// <returns>Whether the action is valid and was executed.</returns>
-        bool Execute(Game game, Random random);
+        bool Execute(Random random);
     }
 }

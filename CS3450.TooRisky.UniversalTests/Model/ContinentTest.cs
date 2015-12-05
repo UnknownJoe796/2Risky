@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.UniversalTests.Model
+namespace CS3450.TooRisky.Tests.Model
 {
     [TestClass]
     public class ContinentTest
@@ -27,8 +27,8 @@ namespace CS3450.TooRisky.UniversalTests.Model
         {
             Game game = new GameTest().MakeExampleGame();
             var continent = game.Continents["Testartica"];
-            Assert.IsTrue(continent.OwnedByName(game, "Player One"));
-            Assert.IsFalse(continent.OwnedByName(game, "Player Two"));
+            Assert.IsTrue(continent.OwnedByName(game, PlayerNumber.P1));
+            Assert.IsFalse(continent.OwnedByName(game, PlayerNumber.P2));
         }
     }
 }

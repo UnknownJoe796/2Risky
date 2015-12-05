@@ -47,11 +47,11 @@ namespace CS3450.TooRisky.Model
         /// <param name="game">The game that this continent is a part of.</param>
         /// <param name="playerName">The name of the player who may own this country.</param>
         /// <returns>Whether or not the given player owns this continent.</returns>
-        public bool OwnedByName(Game game, string playerName)
+        public bool OwnedByName(Game game, PlayerNumber playerName)
         {
             foreach(Country country in Countries(game))
             {
-                if(country.OwnedByName != playerName)
+                if(country.OwnedBy != playerName)
                 {
                     return false;
                 }

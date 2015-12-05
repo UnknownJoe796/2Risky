@@ -6,15 +6,31 @@ using System.Threading.Tasks;
 
 namespace CS3450.TooRisky.Model
 {
+
+    public enum PlayerNumber { None, P1, P2, P3, P4, P5, P6 }
     /// <summary>
     /// Represents the entire game state.
     /// </summary>
     public class Game
     {
+        #region singleton magic
+        //possibly move this to another class to preserve serializationability
+        private static Game _instance;
+
+        public static Game Instance => _instance ?? (_instance = new Game());
+
+        public static Game DisposeAndAcreateNewGame()
+        {
+            _instance = new Game();
+            return _instance;
+        }
+
+        #endregion
+
         /// <summary>
         /// The name of the current player.
         /// </summary>
-        public string CurrentPlayerName = "";
+        public PlayerNumber CurrentPlayerName = PlayerNumber.None;
 
         /// <summary>
         /// The phase in the current player's turn.
@@ -24,7 +40,7 @@ namespace CS3450.TooRisky.Model
         /// <summary>
         /// A dictionary of all of the players in the game by name.
         /// </summary>
-        public Dictionary<string, Player> Players = new Dictionary<string, Player>();
+        public Dictionary<PlayerNumber, Player> Players = new Dictionary<PlayerNumber, Player>();
 
         /// <summary>
         /// A dictionary of all of the countries in the game by name.
@@ -37,12 +53,22 @@ namespace CS3450.TooRisky.Model
         public Dictionary<string, Continent> Continents = new Dictionary<string, Continent>();
 
         /// <summary>
+        /// Public constructor
+        /// </summary>
+        private Game()
+        {
+
+        }
+
+        /// <summary>
         /// Adds a player to this game.
         /// </summary>
         /// <param name="player"></param>
         public void AddPlayer(Player player)
         {
-            Players[player.Name] = player;
+            var ct = Players.Count +  1;
+            player.PlayerNumber = (PlayerNumber) ct;
+            Players[(PlayerNumber)ct] = player;
         }
 
         /// <summary>
@@ -70,14 +96,19 @@ namespace CS3450.TooRisky.Model
         {
             if (random == null) random = new Random();
 
-            var randomizedPlayers = new List<Player>(Players.Values.OrderBy(a => random.Next()));
+            foreach (var country in Countries)
+            {
+                country.Value.OwnedBy = (PlayerNumber) random.Next(0, Instance.Players.Count);
+            }
+
+/*            var randomizedPlayers = new List<Player>(Players.Values.OrderBy(a => random.Next()));
             var randomizedCountries = Countries.Values.OrderBy(a => random.Next());
             var playerIndex = 0;
             foreach(var country in randomizedCountries)
             {
                 country.OwnedByName = randomizedPlayers[playerIndex % randomizedPlayers.Count].Name;
                 playerIndex++;
-            }
+            }*/
         }
 
         /// <summary>
@@ -91,9 +122,6 @@ namespace CS3450.TooRisky.Model
             }
         }
 
-        public Game()
-        {
 
-        }
     }
 }

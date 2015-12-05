@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using CS3450.TooRisky.Model;
 
-namespace CS3450.TooRisky.UniversalTests.Model
+namespace CS3450.TooRisky.Tests.Model
 {
     [TestClass]
     public class GameTest
     {
-        [TestMethod]
         public Game MakeExampleGame()
         {
-            Game game = new Game();
+            var game = Game.DisposeAndAcreateNewGame();
 
             game.AddPlayer(new Player()
             {
+                //PlayerNumber = PlayerNumber.P1,
                 Name = "Player One",
                 Color = 0xFFFF0000,
                 IpAddress = "127.0.0.0"
@@ -25,6 +25,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
 
             game.AddPlayer(new Player()
             {
+                //PlayerNumber = PlayerNumber.P2,
                 Name = "Player Two",
                 Color = 0xFF0000FF,
                 IpAddress = "127.0.0.0"
@@ -40,7 +41,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
                 Units = 1,
                 X = 0,
                 Y = 0,
-                OwnedByName = "Player One"
+                OwnedBy = PlayerNumber.P1
             };
             country.AdjacentCountryNames.Add("Testlyvania");
             country.AdjacentCountryNames.Add("Testanbul");
@@ -52,7 +53,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
                 Units = 1,
                 X = 10,
                 Y = 0,
-                OwnedByName = "Player One"
+                OwnedBy = PlayerNumber.P1
             };
             country.AdjacentCountryNames.Add("Testistan");
             country.AdjacentCountryNames.Add("Testanbul");
@@ -64,7 +65,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
                 Units = 1,
                 X = 0,
                 Y = 10,
-                OwnedByName = "Player Two"
+                OwnedBy = PlayerNumber.P2
             };
             country.AdjacentCountryNames.Add("Testistan");
             country.AdjacentCountryNames.Add("Testlyvania");
@@ -77,7 +78,7 @@ namespace CS3450.TooRisky.UniversalTests.Model
                 Units = 1,
                 X = 0,
                 Y = 20,
-                OwnedByName = "Player Two"
+                OwnedBy = PlayerNumber.P1
             };
             country.AdjacentCountryNames.Add("Testanbul");
             game.AddCountry(country);

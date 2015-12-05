@@ -14,12 +14,12 @@ namespace CS3450.TooRisky
 {
     public class XML
     {
-        Game game = new Game();
+        private Game game = Game.DisposeAndAcreateNewGame();
         List<Continent> continents = new List<Continent>();
         List<Country> countries = new List<Country>();
         public string map { set; private get; }
         public string image { get; private set;}
-        public Game read()
+        public Game Read()
         {
             if (map == null)
                 map = "classic.xml";

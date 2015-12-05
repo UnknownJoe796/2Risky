@@ -9,12 +9,12 @@ namespace CS3450.TooRisky.Model
     /// <summary>
     /// An move that a player might make.
     /// </summary>
-    public class Move : Action
+    public class Move : IAction
     {
         /// <summary>
         /// The name of the player that could make the move.
         /// </summary>
-        public string PlayerName ="";
+        public PlayerNumber PlayerNumber = PlayerNumber.None;
 
         /// <summary>
         /// The name of the country that this action originates from.
@@ -32,9 +32,9 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The player that could make this move.</returns>
-        public Player GetPlayer(Game game)
+        public Player GetPlayer()
         {
-            return game.Players[PlayerName];
+            return Game.Instance.Players[PlayerNumber];
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The country that this attack originates from.</returns>
-        public Country GetFrom(Game game)
+        public Country GetFrom()
         {
-            return game.Countries[FromName];
+            return Game.Instance.Countries[FromName];
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game that this action is a part of.</param>
         /// <returns>The country that this action is targeting.</returns>
-        public Country GetTo(Game game)
+        public Country GetTo()
         {
-            return game.Countries[ToName];
+            return Game.Instance.Countries[ToName];
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game">The game the move belongs to.</param>
         /// <returns>If the move is valid.</returns>
-        public bool IsValid(Game game)
+        public bool IsValid()
         {
-            Country to = GetTo(game);
-            Country from = GetFrom(game);
-            Player player = GetPlayer(game);
+            Country to = GetTo();
+            Country from = GetFrom();
+            Player player = GetPlayer();
 
-            if (from.OwnedByName != player.Name) return false;
-            if (to.OwnedByName != player.Name) return false;
+            if (from.OwnedBy != player.PlayerNumber) return false;
+            if (to.OwnedBy != player.PlayerNumber) return false;
             if (player.UnitsToMove <= 0) return false;
             return true;
         }
@@ -79,13 +79,13 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         /// <param name="game"></param>
         /// <returns>Whether the move is valid and was executed.</returns>
-        public bool Execute(Game game, Random random)
+        public bool Execute(Random random)
         {
-            if (!IsValid(game)) return false;
+            if (!IsValid()) return false;
 
-            Country to = GetTo(game);
-            Country from = GetFrom(game);
-            Player player = GetPlayer(game);
+            Country to = GetTo();
+            Country from = GetFrom();
+            Player player = GetPlayer();
 
             player.UnitsToMove--;
             from.Units--;
@@ -94,12 +94,12 @@ namespace CS3450.TooRisky.Model
             return true;
         }
 
-        public override bool Equals(System.Object obj)
+        public override bool Equals(object obj)
         {
             if (obj == null) return false;
             if (!(obj is Move)) return false;
             var other = obj as Move;
-            if (PlayerName != other.PlayerName) return false;
+            if (PlayerNumber != other.PlayerNumber) return false;
             if (ToName != other.ToName) return false;
             if (FromName != other.FromName) return false;
             return true;
