@@ -22,6 +22,9 @@ namespace CS3450.TooRisky.Views
         public Dictionary<SymbolIcon, Move> Moves { get; private set; }
 
         public bool ArrowsShown { get; private set; }
+
+        public bool ThisPlayersTurn => Game.Instance.CurrentPlayerNumber == Game.Instance.Countries[CountryName].OwnedBy;
+        
         public CountryController (string country)
         {
             this.CountryName = country;
@@ -58,6 +61,7 @@ namespace CS3450.TooRisky.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (!ThisPlayersTurn) return;
             System.Diagnostics.Debug.WriteLine("First controller event");
             if (ArrowsShown)
             {
