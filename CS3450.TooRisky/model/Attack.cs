@@ -102,6 +102,13 @@ namespace CS3450.TooRisky.Model
                 to.Units--;
                 GameLog.AddEvent(player.Name + " attacked " + to.Name + " from " + from.Name + " killing 1 unit.");
             }
+            if(to.Units == 0)
+            {
+                GameLog.AddEvent(player.Name + " has captured " + to.Name);
+                to.OwnedBy = player.PlayerNumber;
+                to.Units++;
+                from.Units--;
+            }
             return true;
         }
 

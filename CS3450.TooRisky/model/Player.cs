@@ -41,6 +41,8 @@ namespace CS3450.TooRisky.Model
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
         public int UnitsToMove = 10;
+
+        public bool IsActive = true;
              
 
         /// <summary>

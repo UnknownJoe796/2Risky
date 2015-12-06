@@ -126,6 +126,26 @@ namespace CS3450.TooRisky.Model
             }
         }
         
+        public bool HasWon()
+        {
+            PlayerNumber tmpNum = PlayerNumber.None;
+            foreach (KeyValuePair<string, Country> entry in Countries)
+            {
+                if(tmpNum == PlayerNumber.None)
+                {
+                    tmpNum = entry.Value.OwnedBy;
+                }
+                else
+                {
+                    if(tmpNum != entry.Value.OwnedBy)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public void EndCurrentPhase()
         {
             if (CurrentPhase == TurnPhase.Placement)
@@ -153,31 +173,74 @@ namespace CS3450.TooRisky.Model
             }
         }
 
+        public void ForfeitCurrentPlayer()
+        {
+            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has given up.");
+            Players[CurrentPlayerNumber].IsActive = false;
+            foreach (KeyValuePair<string, Country> entry in Countries)
+            {
+                entry.Value.OwnedBy = PlayerNumber.None;
+            }
+            CurrentPhase = TurnPhase.Placement;
+            EndCurrentPlayerTurn();
+        }
+
         public void EndCurrentPlayerTurn()
         {
             if (CurrentPlayerNumber == PlayerNumber.P1)
             {
                 CurrentPlayerNumber = PlayerNumber.P2;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P2 && Players.Count > 2)
             {
+
                 CurrentPlayerNumber = PlayerNumber.P3;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P3 && Players.Count > 3)
             {
                 CurrentPlayerNumber = PlayerNumber.P4;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P4 && Players.Count > 4)
             {
                 CurrentPlayerNumber = PlayerNumber.P5;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P5 && Players.Count > 5)
             {
                 CurrentPlayerNumber = PlayerNumber.P6;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
             else
             {
                 CurrentPlayerNumber = PlayerNumber.P1;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                    return;
+                }
             }
            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
         }

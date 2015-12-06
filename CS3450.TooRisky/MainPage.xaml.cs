@@ -320,9 +320,10 @@ namespace CS3450.TooRisky
             };
             dialog.PrimaryButtonClick += (contentDialog, args) =>
             {
-                //TODO add forfeit handler call
+                Game.Instance.ForfeitCurrentPlayer();
             };
             await dialog.ShowAsync();
+            
         }
 
         private void EndPhase_Click(object sender, RoutedEventArgs e)
