@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CS3450.TooRisky.Utils;
 namespace CS3450.TooRisky.Model
 {
     /// <summary>
@@ -92,15 +92,16 @@ namespace CS3450.TooRisky.Model
             //45%% chance, accounting for defender winning ties
             if (random.NextDouble() <= 0.45)
             {
-                //Successful attack
+                //Unsuccessful attack
                 from.Units--;
+                GameLog.AddEvent(player.Name + " attacked " + to.Name + " from " + from.Name + " losing 1 unit.");
             }
             else
             {
-                //Unsuccessful attack
+                //Successful attack
                 to.Units--;
+                GameLog.AddEvent(player.Name + " attacked " + to.Name + " from " + from.Name + " killing 1 unit.");
             }
-
             return true;
         }
 

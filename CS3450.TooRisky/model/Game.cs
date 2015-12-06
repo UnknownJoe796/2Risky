@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CS3450.TooRisky.Utils;
 
 namespace CS3450.TooRisky.Model
 {
@@ -36,8 +37,9 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         public int TurnPhase = 0;
 
+
         /// <summary>
-        /// A dictionary of all of the players in the game by name.
+        /// A dictionary of adll of the players in the game by name.
         /// </summary>
         public Dictionary<PlayerNumber, Player> Players = new Dictionary<PlayerNumber, Player>();
 
@@ -56,7 +58,7 @@ namespace CS3450.TooRisky.Model
         /// </summary>
         private Game()
         {
-
+            
         }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace CS3450.TooRisky.Model
         /// <param name="player"></param>
         public void AddPlayer(Player player)
         {
+            GameLog.AddEvent(player.Name + " has joined the battle!");
             var ct = Players.Count +  1;
             player.PlayerNumber = (PlayerNumber) ct;
             Players[(PlayerNumber)ct] = player;
@@ -122,6 +125,33 @@ namespace CS3450.TooRisky.Model
             }
         }
 
-
+        public void EndCurrentPlayerTurn()
+        {
+            if (CurrentPlayerNumber == PlayerNumber.P1)
+            {
+                CurrentPlayerNumber = PlayerNumber.P2;
+            }
+            else if (CurrentPlayerNumber == PlayerNumber.P2 && Players.Count > 2)
+            {
+                CurrentPlayerNumber = PlayerNumber.P3;
+            }
+            else if (CurrentPlayerNumber == PlayerNumber.P3 && Players.Count > 3)
+            {
+                CurrentPlayerNumber = PlayerNumber.P4;
+            }
+            else if (CurrentPlayerNumber == PlayerNumber.P4 && Players.Count > 4)
+            {
+                CurrentPlayerNumber = PlayerNumber.P5;
+            }
+            else if (CurrentPlayerNumber == PlayerNumber.P5 && Players.Count > 5)
+            {
+                CurrentPlayerNumber = PlayerNumber.P6;
+            }
+            else
+            {
+                CurrentPlayerNumber = PlayerNumber.P1;
+            }
+            System.Diagnostics.Debug.WriteLine(CurrentPlayerNumber);
+        }
     }
 }

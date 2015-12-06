@@ -51,7 +51,7 @@ namespace CS3450.TooRisky.Views
             Button.Content = units.ToString();
         }
 
-        public void UpdateOwenerPlayer(PlayerNumber player)
+        public void UpdateOwnerPlayer(PlayerNumber player)
         {
             Button.Background = player.Color();
         }
@@ -120,7 +120,8 @@ namespace CS3450.TooRisky.Views
             var y = ((double)(yFrom + yTo)) / 2.0;
             var xLength = (double)(xFrom - xTo);
             var yLength = yFrom - yTo == 0 ? 0.00001 : (double)(yFrom - yTo);   //avoid dividing by 0
-            var angle = Math.Atan(xLength / yLength) * (180.0 / Math.PI);
+            var angle = Math.Acos(-yLength/Math.Sqrt(Math.Pow(xLength,2)+Math.Pow(yLength,2))) * (180.0 / Math.PI) + 180;
+            if(xLength < 0) angle *= -1;
             var margin = new Thickness(x, y, 0, 0);
             return Tuple.Create(margin, angle);
         }
