@@ -39,7 +39,7 @@
     </Page.TopAppBar>
 
     <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}" Tapped="MainGrid_Tapped">
-        <Image x:Name="Map" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"  Source="Assets/RiskMap.png"  Stretch="Fill"/>
+        <Image x:Name="Map" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"  Source="Assets/classicMap.png"  Stretch="Fill"/>
 
 
         <!--
