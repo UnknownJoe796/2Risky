@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Map image="imageName.jpg">
+<Map image="classicMap.png">
 	<Zone name="Murica" bonus="5">
 		<Country name="Alaska">
 		   <X>80</X>
