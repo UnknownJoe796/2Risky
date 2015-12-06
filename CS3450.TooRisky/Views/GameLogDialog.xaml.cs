@@ -12,24 +12,23 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using CS3450.TooRisky.Utils;
+using System.Linq;
 
 // The Content Dialog item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace CS3450.TooRisky.Views
 {
-    public sealed partial class GameLog : ContentDialog
+    public sealed partial class GameLogDialog : ContentDialog
     {
-        public GameLog()
+        public GameLogDialog()
         {
             this.InitializeComponent();
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        public void SetContent()
         {
-        }
-
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
+            LogEntries.Text = string.Join("\r\n", GameLog.Events);
         }
     }
 }

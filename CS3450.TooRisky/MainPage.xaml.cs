@@ -37,12 +37,14 @@ namespace CS3450.TooRisky
 
         private ContentDialog _forfeitDialog;
 
+        private ContentDialog _winDialog;
+
         public MainPage()
         {
             this.InitializeComponent();
             Map.Width = this.Width;
             Map.InvalidateArrange();
-            //this.SizeChanged += MainPage_SizeChanged;
+            this.SizeChanged += MainPage_SizeChanged;
             _countryControllers = new List<CountryController>();
             NewGameButton_Click(this, null);
         }
@@ -60,18 +62,13 @@ namespace CS3450.TooRisky
             if (Game.Instance.GameOver())
             {
                 var winPl = Game.Instance.Players.First(a => a.Value.IsActive);
-                var dialog = new ContentDialog()
+                var _winDialog = new ContentDialog()
                 {
                     Title = "WIN!",
-                    Content = "Congratulations, player" + winPl.Value.Name + "wins",
-                    PrimaryButtonText = "New Game",
-                    SecondaryButtonText = "Exit",
+                    Content = "Congratulations, player " + winPl.Value.Name + " wins.",
+                    PrimaryButtonText = "Exit"
                 };
-                dialog.PrimaryButtonClick += (sender, args) =>
-                {
-                    NewGameButton_Click(null, null);
-                };
-                dialog.SecondaryButtonClick += (sender, args) =>
+                _winDialog.PrimaryButtonClick += (sender, args) =>
                 {
                     Application.Current.Exit();
                 };
@@ -79,7 +76,7 @@ namespace CS3450.TooRisky
                 {
                     _forfeitDialog.Hide();
                 }
-                await dialog.ShowAsync();
+                await _winDialog.ShowAsync();
             }
 
             //update country buttons
@@ -159,8 +156,6 @@ namespace CS3450.TooRisky
                 await a.ShowAsync();
             };
             await content.ShowAsync();
-            /*GameLobbyDialog gameLobbyDialog = new GameLobbyDialog();
-            await gameLobbyDialog.ShowAsync();*/
         }
 
         public void InitGame(List<Player> players)
@@ -414,9 +409,11 @@ namespace CS3450.TooRisky
             await cd.ShowAsync();
         }
 
-        private void GameLogButton_Click(object sender, RoutedEventArgs e)
+        private async void GameLogButton_Click(object sender, RoutedEventArgs e)
         {
-            //Show Game log
+            var gameLogDialog = new GameLogDialog();
+            gameLogDialog.SetContent();
+            await gameLogDialog.ShowAsync();
         }
 
         private async void ForfeitButton_Click(object sender, RoutedEventArgs e)

@@ -15,7 +15,7 @@ namespace CS3450.TooRisky.Utils
         {
             System.Diagnostics.Debug.WriteLine(description);
             var now = DateTime.Now.ToString("h:mm:ss");
-            Events.Add(now + ": " + description);
+            Events.Insert(0,now + ": " + description);
         }
     }
 }
