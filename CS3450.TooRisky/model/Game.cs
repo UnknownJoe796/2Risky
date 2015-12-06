@@ -237,7 +237,8 @@ namespace CS3450.TooRisky.Model
                     return;
                 }
             }
-           GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
+            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
+            Players[CurrentPlayerNumber].SetReinforcments();
         }
     }
 }
