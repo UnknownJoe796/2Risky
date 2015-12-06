@@ -17,9 +17,9 @@ namespace CS3450.TooRisky.Views
         public int X { get; private set; }
         public int Y { get; private set; }
         public Button Button { get; private set; }
-        public Dictionary<SymbolIcon, string> Attacks { get; private set; }
+        public Dictionary<SymbolIcon, Attack> Attacks { get; private set; }
         
-        public Dictionary<SymbolIcon, string> Moves { get; private set; }
+        public Dictionary<SymbolIcon, Move> Moves { get; private set; }
 
         public bool ArrowsShown { get; private set; }
         public CountryController (string country)
@@ -29,8 +29,8 @@ namespace CS3450.TooRisky.Views
             this.X = Game.Instance.Countries[country].X-15;
             this.Y = Game.Instance.Countries[country].Y-15;
             ArrowsShown = false;
-            Attacks = new Dictionary<SymbolIcon, string>();
-            Moves = new Dictionary<SymbolIcon, string>();
+            Attacks = new Dictionary<SymbolIcon, Attack>();
+            Moves = new Dictionary<SymbolIcon, Move>();
             CreateButton();
         }
 
@@ -58,13 +58,16 @@ namespace CS3450.TooRisky.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("First controller event");
             if (ArrowsShown)
             {
-               Attacks.Clear();
-               Moves.Clear();
+               ArrowsShown = false;
             }
             else
             {
+                Attacks.Clear();
+                Moves.Clear();
+                ArrowsShown = true;
                 foreach (var a in Game.Instance.Countries[CountryName].Attacks())
                 {
                     var to = Game.Instance.Countries[a.ToName];
@@ -73,7 +76,9 @@ namespace CS3450.TooRisky.Views
                     {
                         HorizontalAlignment = HorizontalAlignment.Left,
                         VerticalAlignment = VerticalAlignment.Top,
-                        Foreground = Constants.AttackColor
+                        Foreground = Constants.AttackColor,
+                        Symbol = Symbol.Up,
+                        Margin = tup.Item1
                     };
 
                     var r = new RotateTransform()
@@ -81,7 +86,7 @@ namespace CS3450.TooRisky.Views
                         Angle = tup.Item2
                     };
                     s.RenderTransform = r;
-                    Attacks.Add(s, a.ToName);
+                    Attacks.Add(s, a);
                 }
 
                 foreach (var a in Game.Instance.Countries[CountryName].Moves())
@@ -92,7 +97,9 @@ namespace CS3450.TooRisky.Views
                     {
                         HorizontalAlignment = HorizontalAlignment.Left,
                         VerticalAlignment = VerticalAlignment.Top,
-                        Foreground = Constants.MoveColor
+                        Foreground = Constants.MoveColor,
+                        Symbol = Symbol.Up,
+                        Margin = tup.Item1
                     };
 
                     var r = new RotateTransform()
@@ -100,20 +107,20 @@ namespace CS3450.TooRisky.Views
                         Angle = tup.Item2
                     };
                     s.RenderTransform = r;
-                    Moves.Add(s, a.ToName);
+                    Moves.Add(s, a);
                 }
-
-                //TODO add to view here!!
             }
+            System.Diagnostics.Debug.WriteLine("First controller event done");
+
         }
 
         public Tuple<Thickness, double> GetArrowPosAndRotation(int xFrom, int yFrom, int xTo, int yTo)
         {
             var x = ((double)(xFrom + xTo)) / 2.0;
             var y = ((double)(yFrom + yTo)) / 2.0;
-            var xLength = (double)(xTo - xFrom);
-            var yLength = yTo - yFrom == 0 ? 0.00001 : (double)(yTo - yFrom);   //avoid dividing by 0
-            var angle = Math.Tan(yLength / xLength) * (180.0 / Math.PI);
+            var xLength = (double)(xFrom - xTo);
+            var yLength = yFrom - yTo == 0 ? 0.00001 : (double)(yFrom - yTo);   //avoid dividing by 0
+            var angle = Math.Atan(xLength / yLength) * (180.0 / Math.PI);
             var margin = new Thickness(x, y, 0, 0);
             return Tuple.Create(margin, angle);
         }
