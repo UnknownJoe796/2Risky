@@ -20,7 +20,6 @@ namespace CS3450.TooRisky.Tests.Model
                 //PlayerNumber = PlayerNumber.P1,
                 Name = "Player One",
                 Color = 0xFFFF0000,
-                IpAddress = "127.0.0.0"
             });
 
             game.AddPlayer(new Player()
@@ -28,7 +27,6 @@ namespace CS3450.TooRisky.Tests.Model
                 //PlayerNumber = PlayerNumber.P2,
                 Name = "Player Two",
                 Color = 0xFF0000FF,
-                IpAddress = "127.0.0.0"
             });
 
 

@@ -35,6 +35,8 @@ namespace CS3450.TooRisky
 
         private string _attacksForShown = null;
 
+        private ContentDialog _forfeitDialog;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -54,6 +56,32 @@ namespace CS3450.TooRisky
 
         public async void UpdateUi()
         {
+            //Check for game over
+            if (Game.Instance.GameOver())
+            {
+                var winPl = Game.Instance.Players.First(a => a.Value.IsActive);
+                var dialog = new ContentDialog()
+                {
+                    Title = "WIN!",
+                    Content = "Congratulations, player" + winPl.Value.Name + "wins",
+                    PrimaryButtonText = "New Game",
+                    SecondaryButtonText = "Exit",
+                };
+                dialog.PrimaryButtonClick += (sender, args) =>
+                {
+                    NewGameButton_Click(null, null);
+                };
+                dialog.SecondaryButtonClick += (sender, args) =>
+                {
+                    Application.Current.Exit();
+                };
+                if (_forfeitDialog != null && _forfeitDialog.Visibility == Visibility.Visible)
+                {
+                    _forfeitDialog.Hide();
+                }
+                await dialog.ShowAsync();
+            }
+
             //update country buttons
             foreach (var p in Game.Instance.Players)
             {
@@ -75,26 +103,7 @@ namespace CS3450.TooRisky
             //Update Hint text
             HintText.Text = Constants.CurrentHintText;
 
-            //Check for game over
-            if (Game.Instance.GameOver())
-            {
-                var winPl = Game.Instance.Players.First(a => a.Value.IsActive);
-                var dialog = new ContentDialog()
-                {
-                    Title = "WIN!",
-                    Content = "Congratulations, player" + winPl.Value.Name + "wins",
-                    PrimaryButtonText = "New Game",
-                    SecondaryButtonText = "Exit",
-                };
-                dialog.PrimaryButtonClick += (sender, args) =>
-                {
-                    NewGameButton_Click(null,null);
-                };
-                dialog.SecondaryButtonClick += (sender, args) =>
-                {
-                    Application.Current.Exit();
-                };
-            }
+
 
             //UpdatePlayerStats
             YourName.Text = Game.Instance.Players[Game.Instance.CurrentPlayerNumber].Name + "'s turn";
@@ -414,21 +423,20 @@ namespace CS3450.TooRisky
         {
             var img = new Image();
             XamlAnimatedGif.AnimationBehavior.SetSourceUri(img, new Uri("ms-appx:///Assets/Forfeit.gif"));
-            var dialog = new ContentDialog()
+            _forfeitDialog = new ContentDialog()
             {
                 Title = "You sure you wanna forfeit?",
                 PrimaryButtonText = "Yes, I suck",
                 SecondaryButtonText = "Keep Playing",
                 Content = img,
             };
-            dialog.PrimaryButtonClick += (contentDialog, args) =>
+            _forfeitDialog.PrimaryButtonClick += (contentDialog, args) =>
             {
                 Game.Instance.ForfeitCurrentPlayer();
                 UpdateUi();
             };
             
-            await dialog.ShowAsync();
-
+            await _forfeitDialog.ShowAsync();
             
         }
 
