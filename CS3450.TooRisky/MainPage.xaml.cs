@@ -52,7 +52,7 @@ namespace CS3450.TooRisky
             this.InitializeComponent();
         }
 
-        public void UpdateUi()
+        public async void UpdateUi()
         {
             //update country buttons
             foreach (var p in Game.Instance.Players)
@@ -65,25 +65,9 @@ namespace CS3450.TooRisky
                 }
             }
 
-            //Update Player Views Turn indicator
-            PlayerView1.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P1);
-            PlayerView2.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P2);
-            PlayerView3.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P3);
-            PlayerView4.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P4);
-            PlayerView5.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P5);
-            PlayerView6.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P6);
+            //Set Player Views
+            SetPlayerViews();
 
-            //Update Player Views Unit Ct
-            PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
-            PlayerView2.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
-            if(Game.Instance.Players.ContainsKey(PlayerNumber.P3))
-                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P3].TotalUnits);
-            if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
-                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P4].TotalUnits);
-            if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
-                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P5].TotalUnits);
-            if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
-                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P6].TotalUnits);
 
             //Update Turn Phase Label
             EndTurnButton.Label = Game.Instance.CurrentPhase == TurnPhase.Move ? "End Turn" : "End Phase";
@@ -91,7 +75,35 @@ namespace CS3450.TooRisky
             //Update Hint text
             HintText.Text = Constants.CurrentHintText;
 
+            //Check for game over
+            if (Game.Instance.GameOver())
+            {
+                var winPl = Game.Instance.Players.First(a => a.Value.IsActive);
+                var dialog = new ContentDialog()
+                {
+                    Title = "WIN!",
+                    Content = "Congratulations, player" + winPl.Value.Name + "wins",
+                    PrimaryButtonText = "New Game",
+                    SecondaryButtonText = "Exit",
+                };
+                dialog.PrimaryButtonClick += (sender, args) =>
+                {
+                    NewGameButton_Click(null,null);
+                };
+                dialog.SecondaryButtonClick += (sender, args) =>
+                {
+                    Application.Current.Exit();
+                };
+            }
 
+            //UpdatePlayerStats
+            YourName.Text = Game.Instance.Players[Game.Instance.CurrentPlayerNumber].Name + "'s turn";
+            CountriesOwnedLabel.Text =
+                Game.Instance.Players[Game.Instance.CurrentPlayerNumber].CountriesOwned.Count.ToString();
+            UnitsToPlaceLabel.Text = Game.Instance.Players[Game.Instance.CurrentPlayerNumber].UnitsToPlace.ToString();
+            UnitsToMoveLabel.Text = Game.Instance.Players[Game.Instance.CurrentPlayerNumber].UnitsToMove.ToString();
+            ZoneBonusLabel.Text =
+                Game.Instance.Players[Game.Instance.CurrentPlayerNumber].ContinentsOwned.Sum(a => a.Worth).ToString();
         }
 
         private async void NewGameButton_Click(object sender, RoutedEventArgs e)
@@ -153,6 +165,7 @@ namespace CS3450.TooRisky
             Game.Instance.RandomlyAssignCountries();
             Game.Instance.CurrentPlayerNumber =
                 (PlayerNumber) Constants.RandomGen.Next(1, Game.Instance.Players.Count + 1);
+            Game.Instance.Players[Game.Instance.CurrentPlayerNumber].SetReinforcments();
 
             //wire up country controllers
             foreach (var c in Game.Instance.Countries)
@@ -199,7 +212,8 @@ namespace CS3450.TooRisky
                             case TurnPhase.Placement:
                                 Placement pl = new Placement()
                                 {
-                                    ToName = contr.CountryName
+                                    ToName = contr.CountryName,
+                                    PlayerNumber = Game.Instance.CurrentPlayerNumber
                                 };
                                 if (pl.IsValid())
                                     pl.Execute(null);
@@ -208,23 +222,50 @@ namespace CS3450.TooRisky
                                 foreach (var a in contr.Attacks)
                                 {
                                     #region Attack Click Handler
-
-                                    a.Key.Tapped += (o, eventArgs) =>
+                                    if (a.Value.IsValid())
                                     {
-                                        a.Value.Execute(Constants.RandomGen);
-                                        UpdateUi();
-                                    };
+                                        a.Key.Tapped += (o, eventArgs) =>
+                                        {
+                                            if (a.Value.IsValid())
+                                            {
+                                                a.Value.Execute(Constants.RandomGen);
+                                                if (!a.Value.IsValid())
+                                                {
+                                                    RemoveActionArrows();
+                                                }
+                                            }
+                                            UpdateUi();
+                                        };
 
-                                    #endregion
+                                        #endregion
 
-                                    MainGrid.Children.Add(a.Key);
-
+                                        MainGrid.Children.Add(a.Key);
+                                    }
                                 }
                                 break;
                             default:    //TurnPhase.Move
-                                foreach (var m in contr.Moves)
+                                foreach (var a in contr.Moves)
                                 {
-                                    MainGrid.Children.Add(m.Key);
+                                    #region Moves Click Handler
+                                    if (a.Value.IsValid())
+                                    {
+                                        a.Key.Tapped += (o, eventArgs) =>
+                                        {
+                                            if (a.Value.IsValid())
+                                            {
+                                                a.Value.Execute(null);
+                                                if (!a.Value.IsValid())
+                                                {
+                                                    RemoveActionArrows();
+                                                }
+                                            }
+                                            UpdateUi();
+                                        };
+
+                                        #endregion
+
+                                        MainGrid.Children.Add(a.Key);
+                                    }
                                 }
                                 break;
                         }
@@ -234,12 +275,21 @@ namespace CS3450.TooRisky
                 _countryControllers.Add(contr);
                 MainGrid.Children.Add(_countryControllers.Last().Button);
             }
-       
+            //Update everything else we'd normally update after every action
+            Constants.CurrentHintText = Constants.PlacementHint;
+
+            UpdateUi();
+
+        }
+
+        public void SetPlayerViews()
+        {
             //Set Player Views
+
             PlayerView1.SetPlayer(Game.Instance.Players[PlayerNumber.P1]);
             PlayerView2.SetPlayer(Game.Instance.Players[PlayerNumber.P2]);
 
-            if(Game.Instance.Players.ContainsKey(PlayerNumber.P3))
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P3))
                 PlayerView3.SetPlayer(Game.Instance.Players[PlayerNumber.P3]);
             else
                 PlayerView3.Visibility = Visibility.Collapsed;
@@ -259,9 +309,50 @@ namespace CS3450.TooRisky
             else
                 PlayerView6.Visibility = Visibility.Collapsed;
 
-            //Update everything else we'd normally update after every action
-            UpdateUi();
+            //Update Player Views Turn indicator
+            PlayerView1.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P1);
+            PlayerView2.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P2);
+            PlayerView3.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P3);
+            PlayerView4.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P4);
+            PlayerView5.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P5);
+            PlayerView6.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P6);
 
+            //Update Player Views Unit Ct
+            //P1
+            if(Game.Instance.Players[PlayerNumber.P1].IsActive)
+                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
+            else
+                PlayerView1.SetForfeited();
+
+            //P2
+            if (Game.Instance.Players[PlayerNumber.P2].IsActive)
+                PlayerView2.SetUnitsCt(Game.Instance.Players[PlayerNumber.P2].TotalUnits);
+            else 
+                PlayerView2.SetForfeited();
+            //P3
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P3))
+                if (Game.Instance.Players[PlayerNumber.P3].IsActive)
+                    PlayerView3.SetUnitsCt(Game.Instance.Players[PlayerNumber.P3].TotalUnits);
+                else
+                    PlayerView3.SetForfeited();
+            //P4
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
+                if (Game.Instance.Players[PlayerNumber.P4].IsActive)
+                    PlayerView4.SetUnitsCt(Game.Instance.Players[PlayerNumber.P4].TotalUnits);
+                else
+                    PlayerView4.SetForfeited();
+            //P5
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
+                if (Game.Instance.Players[PlayerNumber.P5].IsActive)
+                    PlayerView5.SetUnitsCt(Game.Instance.Players[PlayerNumber.P5].TotalUnits);
+                else
+                    PlayerView5.SetForfeited();
+            //P6
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
+                if (Game.Instance.Players[PlayerNumber.P6].IsActive)
+                    PlayerView6.SetUnitsCt(Game.Instance.Players[PlayerNumber.P6].TotalUnits);
+                else
+                    PlayerView6.SetForfeited();
         }
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
@@ -314,12 +405,6 @@ namespace CS3450.TooRisky
             await cd.ShowAsync();
         }
 
-        private void MainGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-            YourName.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
-        }
-
         private void GameLogButton_Click(object sender, RoutedEventArgs e)
         {
             //Show Game log
@@ -339,17 +424,27 @@ namespace CS3450.TooRisky
             dialog.PrimaryButtonClick += (contentDialog, args) =>
             {
                 Game.Instance.ForfeitCurrentPlayer();
-
+                UpdateUi();
             };
             
             await dialog.ShowAsync();
+
             
         }
 
         private void EndPhase_Click(object sender, RoutedEventArgs e)
         {
             Game.Instance.EndCurrentPhase();
+            RemoveActionArrows();
             UpdateUi();
+        }
+
+        private void RemoveActionArrows()
+        {
+            foreach (SymbolIcon a in MainGrid.Children.OfType<SymbolIcon>())
+            {
+                MainGrid.Children.Remove(a);
+            }
         }
     }
 }

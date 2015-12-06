@@ -46,5 +46,11 @@ namespace CS3450.TooRisky.Views
         {
             PlayerUnits.Text = $"Units: {unitsCt}";
         }
+
+        public void SetForfeited()
+        {
+            PlayerUnits.Text = "#Rekt";
+            PlayerIcon.Symbol = Symbol.Delete;
+        }
     }
 }

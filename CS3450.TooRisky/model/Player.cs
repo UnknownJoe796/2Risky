@@ -16,31 +16,26 @@ namespace CS3450.TooRisky.Model
         /// <summary>
         /// The name of this player.
         /// </summary>
-        public string Name = "";
+        public string Name;
 
-        public PlayerNumber PlayerNumber = PlayerNumber.None;
+        public PlayerNumber PlayerNumber;
 
         /// <summary>
         /// The color that represents this player.
         /// </summary>
-        public uint Color = 0xFF808080;
-
-        /// <summary>
-        /// The IP address of this player.
-        /// </summary>
-        public string IpAddress = "";
+        public uint Color;
 
         /// <summary>
         /// The number of units the player can still place this turn.
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
-        public int UnitsToPlace = 0;
+        public int UnitsToPlace;
 
         /// <summary>
         /// The number of units the player can still move this turn.
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
-        public int UnitsToMove = 10;
+        public int UnitsToMove;
 
         public bool IsActive = true;
              
@@ -52,6 +47,7 @@ namespace CS3450.TooRisky.Model
             {
                 UnitsToPlace += continent.Worth;
             }
+            UnitsToMove = Constants.UnitsToMove;
         }
         /// <summary>
         /// Returns a list of the countries that this player owns.

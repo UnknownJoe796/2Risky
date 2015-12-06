@@ -62,7 +62,7 @@ namespace CS3450.TooRisky.Model
             Country to = GetTo();
             Player player = GetPlayer();
 
-            if (to.OwnedBy == player.PlayerNumber) return false;
+            if (to.OwnedBy != player.PlayerNumber) return false;
             if (player.UnitsToPlace <= 0) return false;
             
             return true;
