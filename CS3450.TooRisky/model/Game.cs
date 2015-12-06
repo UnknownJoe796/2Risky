@@ -126,6 +126,26 @@ namespace CS3450.TooRisky.Model
             }
         }
         
+        public bool HasWon()
+        {
+            PlayerNumber tmpNum = PlayerNumber.None;
+            foreach (KeyValuePair<string, Country> entry in Countries)
+            {
+                if(tmpNum == PlayerNumber.None)
+                {
+                    tmpNum = entry.Value.OwnedBy;
+                }
+                else
+                {
+                    if(tmpNum != entry.Value.OwnedBy)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public void EndCurrentPhase()
         {
             if (CurrentPhase == TurnPhase.Placement)
