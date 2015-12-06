@@ -277,7 +277,7 @@ namespace CS3450.TooRisky
 
         private void ForfeitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Game.Instance.ForfeitCurrentPlayer();
         }
 
         private void EndPhase_Click(object sender, RoutedEventArgs e)

@@ -167,6 +167,18 @@ namespace CS3450.TooRisky.Model
             }
         }
 
+        public void ForfeitCurrentPlayer()
+        {
+            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has given up.");
+            Players[CurrentPlayerNumber].IsActive = false;
+            foreach (KeyValuePair<string, Country> entry in Countries)
+            {
+                entry.Value.OwnedBy = PlayerNumber.None;
+            }
+            CurrentPhase = TurnPhase.Placement;
+            EndCurrentPlayerTurn();
+        }
+
         public void EndCurrentPlayerTurn()
         {
             if (CurrentPlayerNumber == PlayerNumber.P1)
@@ -175,6 +187,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P2 && Players.Count > 2)
@@ -184,6 +197,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P3 && Players.Count > 3)
@@ -192,6 +206,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P4 && Players.Count > 4)
@@ -200,6 +215,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P5 && Players.Count > 5)
@@ -208,6 +224,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
             else
@@ -216,6 +233,7 @@ namespace CS3450.TooRisky.Model
                 if (!Players[CurrentPlayerNumber].IsActive)
                 {
                     EndCurrentPlayerTurn();
+                    return;
                 }
             }
            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
