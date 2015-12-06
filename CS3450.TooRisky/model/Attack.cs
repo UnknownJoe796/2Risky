@@ -104,6 +104,19 @@ namespace CS3450.TooRisky.Model
             }
             if(to.Units == 0)
             {
+                var ct = 0;
+                foreach (KeyValuePair<string, Country> entry in Game.Instance.Countries)
+                {
+                    if (entry.Value.OwnedBy == to.OwnedBy)
+                    {
+                        ct++;
+                    }
+                }
+                if(ct == 1)
+                {
+                    Game.Instance.Players[to.OwnedBy].IsActive = false;
+                    GameLog.AddEvent(Game.Instance.Players[to.OwnedBy].Name + " has lost.");
+                }
                 GameLog.AddEvent(player.Name + " has captured " + to.Name);
                 to.OwnedBy = player.PlayerNumber;
                 to.Units++;
