@@ -172,26 +172,51 @@ namespace CS3450.TooRisky.Model
             if (CurrentPlayerNumber == PlayerNumber.P1)
             {
                 CurrentPlayerNumber = PlayerNumber.P2;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P2 && Players.Count > 2)
             {
+
                 CurrentPlayerNumber = PlayerNumber.P3;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P3 && Players.Count > 3)
             {
                 CurrentPlayerNumber = PlayerNumber.P4;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P4 && Players.Count > 4)
             {
                 CurrentPlayerNumber = PlayerNumber.P5;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
             else if (CurrentPlayerNumber == PlayerNumber.P5 && Players.Count > 5)
             {
                 CurrentPlayerNumber = PlayerNumber.P6;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
             else
             {
                 CurrentPlayerNumber = PlayerNumber.P1;
+                if (!Players[CurrentPlayerNumber].IsActive)
+                {
+                    EndCurrentPlayerTurn();
+                }
             }
            GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
         }
