@@ -144,21 +144,19 @@ namespace CS3450.TooRisky.Model
         {
             if (CurrentPhase == TurnPhase.Placement)
             {
-                Constants.CurrentHintText = Constants.PlacementHint;
-
+                Constants.CurrentHintText = Constants.AttackHint;
                 CurrentPhase = TurnPhase.Attack;
-                Constants.CurrentHintText = "Attacks Phase: Click on territories you'd like to atack from";
                 GameLog.AddEvent(Players[CurrentPlayerNumber].Name+" has finished placement and initiated attack phase.");
             }
             else if (CurrentPhase == TurnPhase.Attack)
             {
                 CurrentPhase = TurnPhase.Move;
-                Constants.CurrentHintText = Constants.AttackHint;
+                Constants.CurrentHintText = Constants.MoveHint;
                 GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has finished attacking and initiated move phase.");
             }
             else if (CurrentPhase == TurnPhase.Move)
             {
-                Constants.CurrentHintText = Constants.MoveHint;
+                Constants.CurrentHintText = Constants.PlacementHint;
 
                 GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has finished their turn.");
                 EndCurrentPlayerTurn();

@@ -17,9 +17,10 @@ namespace CS3450.TooRisky.Model
         public static readonly string AttackHint =
             "Attack: click territories from which you want to attack. Click End Phase when done";
         public static readonly string MoveHint =
-            "Attack: click territories from which you want to move units. Click End Turn when done";
+            "Move: click territories from which you want to move units. Click End Turn when done";
         public static readonly Random RandomGen = new Random();
         public static readonly int InitialNumOfUnits = 3;
+        public static readonly int UnitsToMove = 5;
         public static readonly Brush AttackColor = new SolidColorBrush(Colors.DarkRed);
         public static readonly Brush MoveColor = new SolidColorBrush(Colors.DarkBlue);
         public static Brush Color(this PlayerNumber player)
@@ -40,10 +41,10 @@ namespace CS3450.TooRisky.Model
                     c = Colors.Red;
                     break;
                 case PlayerNumber.P4:
-                    c = Colors.Yellow;
+                    c = Colors.Orange;
                     break;
                 case PlayerNumber.P5:
-                    c = Colors.Orange;
+                    c = Colors.SaddleBrown;
                     break;
                 case PlayerNumber.P6:
                     c = Colors.Magenta;
