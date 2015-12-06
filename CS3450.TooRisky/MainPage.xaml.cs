@@ -52,7 +52,7 @@ namespace CS3450.TooRisky
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.Width = 1280;
-            this.Height = 720;
+            this.Height = 720 + 48;
             this.InitializeComponent();
         }
 
@@ -381,8 +381,6 @@ namespace CS3450.TooRisky
             ContentDialog cd = new ContentDialog()
             {
                 Title = "Help",
-                Width = 500,
-                Height = 600,
                 Content = content,
                 PrimaryButtonText = "OK"
 
@@ -402,8 +400,13 @@ namespace CS3450.TooRisky
                 Width = 500,
                 Height = 500,
                 Content = content,
-                PrimaryButtonText = "OK"
+                PrimaryButtonText = "OK",
+                SecondaryButtonText = "Github"
 
+            };
+            cd.SecondaryButtonClick += async (dialog, args) =>
+            {
+                await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/UnknownJoe796/2Risky"));
             };
 
             await cd.ShowAsync();
