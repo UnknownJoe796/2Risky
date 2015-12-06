@@ -11,6 +11,13 @@ namespace CS3450.TooRisky.Model
     static class Constants
     {
         public static string CurrentHintText = "Welcome to 2Risky. Hints appear here";
+
+        public static readonly string PlacementHint =
+            "Placement: click territories where you'd like to place units. Click End Phase when done";
+        public static readonly string AttackHint =
+            "Attack: click territories from which you want to attack. Click End Phase when done";
+        public static readonly string MoveHint =
+            "Attack: click territories from which you want to move units. Click End Turn when done";
         public static readonly Random RandomGen = new Random();
         public static readonly int InitialNumOfUnits = 3;
         public static readonly Brush AttackColor = new SolidColorBrush(Colors.DarkRed);
