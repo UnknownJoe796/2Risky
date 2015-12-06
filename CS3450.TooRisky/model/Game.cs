@@ -9,6 +9,7 @@ namespace CS3450.TooRisky.Model
 {
 
     public enum PlayerNumber { None, P1, P2, P3, P4, P5, P6 }
+    public enum TurnPhase { Placement, Attack, Move}
     /// <summary>
     /// Represents the entire game state.
     /// </summary>
@@ -30,12 +31,12 @@ namespace CS3450.TooRisky.Model
         /// <summary>
         /// The name of the current player.
         /// </summary>
-        public PlayerNumber CurrentPlayerNumber = PlayerNumber.None;
+        public PlayerNumber CurrentPlayerNumber = PlayerNumber.P1;
 
         /// <summary>
         /// The phase in the current player's turn.
         /// </summary>
-        public int TurnPhase = 0;
+        public TurnPhase CurrentPhase = TurnPhase.Placement;
 
 
         /// <summary>
@@ -124,6 +125,27 @@ namespace CS3450.TooRisky.Model
                 country.JustTakenOver = false;
             }
         }
+        
+        public void EndCurrentPhase()
+        {
+            if (CurrentPhase == TurnPhase.Placement)
+            {
+                CurrentPhase = TurnPhase.Attack;
+                GameLog.AddEvent(Players[CurrentPlayerNumber].Name+" has finished placement and initiated attack phase.");
+            }
+            else if (CurrentPhase == TurnPhase.Attack)
+            {
+                CurrentPhase = TurnPhase.Move;
+                GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has finished attacking and initiated move phase.");
+            }
+            else if (CurrentPhase == TurnPhase.Move)
+            {
+                GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has finished their turn.");
+                EndCurrentPlayerTurn();
+                CurrentPhase = TurnPhase.Placement;
+                
+            }
+        }
 
         public void EndCurrentPlayerTurn()
         {
@@ -151,7 +173,7 @@ namespace CS3450.TooRisky.Model
             {
                 CurrentPlayerNumber = PlayerNumber.P1;
             }
-            System.Diagnostics.Debug.WriteLine(CurrentPlayerNumber);
+           GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has begun their turn");
         }
     }
 }

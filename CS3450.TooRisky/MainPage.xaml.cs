@@ -280,9 +280,9 @@ namespace CS3450.TooRisky
 
         }
 
-        private void EndTurn_Click(object sender, RoutedEventArgs e)
+        private void EndPhase_Click(object sender, RoutedEventArgs e)
         {
-            Game.Instance.EndCurrentPlayerTurn();
+            Game.Instance.EndCurrentPhase();
         }
     }
 }

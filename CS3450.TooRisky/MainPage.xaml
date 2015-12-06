@@ -34,7 +34,7 @@
             <AppBarButton x:Name="HelpButton" Icon="Help" Label="Help" Click="HelpButton_Click"/>
 
             <AppBarButton x:Name="AboutButton" Icon="OtherUser" Label="About" Click="AboutButton_Click"/>
-            <AppBarButton x:Name="EndTurnButton" Icon="Accept" Label="End Turn" Click="EndTurn_Click"/>
+            <AppBarButton x:Name="EndTurnButton" Icon="Accept" Label="End Turn" Click="EndPhase_Click"/>
         </CommandBar>
     </Page.TopAppBar>
 
