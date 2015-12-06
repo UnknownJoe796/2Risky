@@ -39,6 +39,7 @@ namespace CS3450.TooRisky
             this.SizeChanged += MainPage_SizeChanged;
             _countryControllers = new List<CountryController>();
             NewGameButton_Click(this, null);
+            
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -50,6 +51,38 @@ namespace CS3450.TooRisky
 
         public void UpdateUi()
         {
+            //update country buttons
+            foreach (var p in Game.Instance.Players)
+            {
+                foreach (var co in p.Value.CountriesOwned)
+                {
+                    var cc = _countryControllers.First(a => a.CountryName == co.Name);
+                    cc.UpdateOwenerPlayer(p.Key);
+                    cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
+
+                }
+            }
+
+            //Update Player Views Turn indicator
+            PlayerView1.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P1);
+            PlayerView2.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P2);
+            PlayerView3.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P3);
+            PlayerView4.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P4);
+            PlayerView5.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P5);
+            PlayerView6.SetTurn(Game.Instance.CurrentPlayerNumber == PlayerNumber.P6);
+
+            //Update Player Views Unit Ct
+            PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
+            PlayerView2.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
+            if(Game.Instance.Players.ContainsKey(PlayerNumber.P3))
+                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P3].TotalUnits);
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
+                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P4].TotalUnits);
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
+                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P5].TotalUnits);
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
+                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P6].TotalUnits);
+
 
         }
 
@@ -117,6 +150,34 @@ namespace CS3450.TooRisky
                 MainGrid.Children.Add(_countryControllers.Last().Button);
             }
 
+
+            //Set Player Views
+            PlayerView1.SetPlayer(Game.Instance.Players[PlayerNumber.P1]);
+            PlayerView2.SetPlayer(Game.Instance.Players[PlayerNumber.P2]);
+
+            if(Game.Instance.Players.ContainsKey(PlayerNumber.P3))
+                PlayerView3.SetPlayer(Game.Instance.Players[PlayerNumber.P3]);
+            else
+                PlayerView3.Visibility = Visibility.Collapsed;
+
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
+                PlayerView4.SetPlayer(Game.Instance.Players[PlayerNumber.P4]);
+            else
+                PlayerView4.Visibility = Visibility.Collapsed;
+
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
+                PlayerView5.SetPlayer(Game.Instance.Players[PlayerNumber.P5]);
+            else
+                PlayerView5.Visibility = Visibility.Collapsed;
+
+            if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
+                PlayerView6.SetPlayer(Game.Instance.Players[PlayerNumber.P6]);
+            else
+                PlayerView6.Visibility = Visibility.Collapsed;
+
+            //Update everything else we'd normally update after every action
+            UpdateUi();
+
         }
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
@@ -154,7 +215,7 @@ namespace CS3450.TooRisky
         private void MainGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
-            Coord.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
+            //Coord.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
         }
     }
 }

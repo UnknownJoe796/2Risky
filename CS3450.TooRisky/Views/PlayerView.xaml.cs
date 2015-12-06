@@ -34,7 +34,7 @@ namespace CS3450.TooRisky.Views
 
         public void SetTurn(bool thisPlayersTurn)
         {
-            var colour = thisPlayersTurn ? "##FF787878" : "##00E6E6E6";
+            var colour = thisPlayersTurn ? "#FF787878" : "#00E6E6E6";
             Root.Background = new SolidColorBrush(Color.FromArgb(
                 Convert.ToByte(colour.Substring(1, 2), 16),
                 Convert.ToByte(colour.Substring(3, 2), 16),
