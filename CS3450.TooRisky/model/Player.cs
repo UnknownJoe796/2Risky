@@ -45,6 +45,14 @@ namespace CS3450.TooRisky.Model
         public bool IsActive = true;
              
 
+        public void  SetReinforcments()
+        {
+            UnitsToPlace = Math.Max(CountriesOwned.Count / 3, 3);
+            foreach(Continent continent in ContinentsOwned)
+            {
+                UnitsToPlace += continent.Worth;
+            }
+        }
         /// <summary>
         /// Returns a list of the countries that this player owns.
         /// </summary>
