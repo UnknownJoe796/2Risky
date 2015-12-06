@@ -357,12 +357,28 @@ namespace CS3450.TooRisky
 
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-            string content = "Lorem";
+            string content = "A game of 2Risky is played by players taking turns.\n";
+            content += "Each turn is seperated into 3 phases: unit placement\n";
+            content += "attack, and movement.\n";
+            content += "MOVE PHASE\n";
+            content += "At the begining of each player's turn they are given a set of\nreinforcements";
+            content += " this is the Unit placement phase.\nThe number of reinforcements is equal to";
+            content += " the number of countries\nowned divided by 3 rounded down, or 3 whichever is larger";
+            content += " plus the continental bonus(see below).\n";
+            content += "ATTACK PHASE\n";
+            content += "The next phase is the attack phase, this is where a player can choose\nto attack countries adjacent to the ones they own";
+            content += "if they\nsuccessfully bring their opponents units on that country to 0, they\nclaim control of it and move 1 unit to";
+            content += "that country\nThis can continue as long as a player wishes and is able.\n";
+            content += "MOVE PHASE\n";
+            content += "The third and final phase is the move phase.\nThis is where players get to move units around to their new\ncountries";
+            content += " each player can move 5 total units to adjacent countries.\n";
+            content += "WINNING\n";
+            content += "This continues until one player controls the world, or everyone else\nforfeits.";
             ContentDialog cd = new ContentDialog()
             {
                 Title = "Help",
                 Width = 500,
-                Height = 500,
+                Height = 600,
                 Content = content,
                 PrimaryButtonText = "OK"
 
@@ -373,7 +389,9 @@ namespace CS3450.TooRisky
 
         private async void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            string content = "Lorem";
+            string content = "This project was created in the Fall of 2015 ";
+            content += "as the final project\n for CS3450.\n\nIt was created by:\n";
+            content += "Derek Hunter\t\t\tGreg Vernon\nFabio Göttlicher\t\t\tJustin Young\nNate Ashby\t\t\tJoe Ivey";
             ContentDialog cd = new ContentDialog()
             {
                 Title = "About",
@@ -408,6 +426,7 @@ namespace CS3450.TooRisky
                 Game.Instance.ForfeitCurrentPlayer();
                 UpdateUi();
             };
+            
             await dialog.ShowAsync();
 
             
