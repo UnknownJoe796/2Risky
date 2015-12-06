@@ -82,6 +82,10 @@ namespace CS3450.TooRisky.Model
 
             player.UnitsToPlace--;
             to.Units++;
+            if(player.UnitsToPlace == 0)
+            {
+                Game.Instance.EndCurrentPhase();
+            }
             GameLog.AddEvent(player.Name + " place 1 unit on " + to.Name + ".");
             return true;
         }
