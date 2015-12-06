@@ -400,11 +400,11 @@ namespace CS3450.TooRisky
                 Width = 500,
                 Height = 500,
                 Content = content,
-                PrimaryButtonText = "OK",
-                SecondaryButtonText = "Github"
+                SecondaryButtonText = "OK",
+                PrimaryButtonText = "Github"
 
             };
-            cd.SecondaryButtonClick += async (dialog, args) =>
+            cd.PrimaryButtonClick += async (dialog, args) =>
             {
                 await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/UnknownJoe796/2Risky"));
             };
