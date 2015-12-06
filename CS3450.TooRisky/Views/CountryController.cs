@@ -51,7 +51,7 @@ namespace CS3450.TooRisky.Views
             Button.Content = units.ToString();
         }
 
-        public void UpdateOwenerPlayer(PlayerNumber player)
+        public void UpdateOwnerPlayer(PlayerNumber player)
         {
             Button.Background = player.Color();
         }

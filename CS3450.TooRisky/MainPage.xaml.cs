@@ -58,7 +58,7 @@ namespace CS3450.TooRisky
                 foreach (var co in p.Value.CountriesOwned)
                 {
                     var cc = _countryControllers.First(a => a.CountryName == co.Name);
-                    cc.UpdateOwenerPlayer(p.Key);
+                    cc.UpdateOwnerPlayer(p.Key);
                     cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
 
                 }
@@ -278,6 +278,11 @@ namespace CS3450.TooRisky
         private void ForfeitButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void EndTurn_Click(object sender, RoutedEventArgs e)
+        {
+            Game.Instance.EndCurrentPlayerTurn();
         }
     }
 }
