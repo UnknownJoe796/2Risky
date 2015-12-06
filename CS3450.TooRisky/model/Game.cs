@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CS3450.TooRisky.Utils;
 
 namespace CS3450.TooRisky.Model
 {
@@ -66,6 +67,7 @@ namespace CS3450.TooRisky.Model
         /// <param name="player"></param>
         public void AddPlayer(Player player)
         {
+            GameLog.AddEvent(player.Name + " has joined the battle!");
             var ct = Players.Count +  1;
             player.PlayerNumber = (PlayerNumber) ct;
             Players[(PlayerNumber)ct] = player;
@@ -125,7 +127,6 @@ namespace CS3450.TooRisky.Model
 
         public void EndCurrentPlayerTurn()
         {
-            //(PlayerNumber)ct;
             if (CurrentPlayerNumber == PlayerNumber.P1)
             {
                 CurrentPlayerNumber = PlayerNumber.P2;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CS3450.TooRisky.Utils;
 
 namespace CS3450.TooRisky.Model
 {
@@ -90,7 +91,7 @@ namespace CS3450.TooRisky.Model
             player.UnitsToMove--;
             from.Units--;
             to.Units++;
-
+            GameLog.AddEvent(player.Name + " moved 1 unit from " + from.Name + " to " + to.Name + ".");
             return true;
         }
 

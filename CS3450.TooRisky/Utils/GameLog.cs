@@ -13,6 +13,7 @@ namespace CS3450.TooRisky.Utils
 
         public static void AddEvent(string description)
         {
+            System.Diagnostics.Debug.WriteLine(description);
             var now = DateTime.Now.ToString("h:mm:ss");
             Events.Add(now + ": " + description);
         }
