@@ -110,8 +110,8 @@ namespace CS3450.TooRisky.Views
         {
             var x = ((double)(xFrom + xTo)) / 2.0;
             var y = ((double)(yFrom + yTo)) / 2.0;
-            var xLength = xTo - xFrom;
-            var yLength = yTo - yFrom;
+            var xLength = (double)(xTo - xFrom);
+            var yLength = yTo - yFrom == 0 ? 0.00001 : (double)(yTo - yFrom);   //avoid dividing by 0
             var angle = Math.Tan(yLength / xLength) * (180.0 / Math.PI);
             var margin = new Thickness(x, y, 0, 0);
             return Tuple.Create(margin, angle);

@@ -29,7 +29,7 @@ namespace CS3450.TooRisky.Model
         /// <summary>
         /// The name of the current player.
         /// </summary>
-        public PlayerNumber CurrentPlayerName = PlayerNumber.None;
+        public PlayerNumber CurrentPlayerNumber = PlayerNumber.None;
 
         /// <summary>
         /// The phase in the current player's turn.
@@ -97,7 +97,8 @@ namespace CS3450.TooRisky.Model
 
             foreach (var country in Countries)
             {
-                country.Value.OwnedBy = (PlayerNumber) random.Next(0, Instance.Players.Count);
+                country.Value.OwnedBy = (PlayerNumber) random.Next(1, Instance.Players.Count + 1);
+                country.Value.Units = Constants.InitialNumOfUnits;
             }
 
 /*            var randomizedPlayers = new List<Player>(Players.Values.OrderBy(a => random.Next()));
