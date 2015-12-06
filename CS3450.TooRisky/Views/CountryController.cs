@@ -25,8 +25,9 @@ namespace CS3450.TooRisky.Views
         public CountryController (string country)
         {
             this.CountryName = country;
-            this.X = Game.Instance.Countries[country].X;
-            this.Y = Game.Instance.Countries[country].Y;
+            // -15 To center button on coordinate
+            this.X = Game.Instance.Countries[country].X-15;
+            this.Y = Game.Instance.Countries[country].Y-15;
             ArrowsShown = false;
             Attacks = new Dictionary<SymbolIcon, string>();
             Moves = new Dictionary<SymbolIcon, string>();

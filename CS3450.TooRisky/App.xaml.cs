@@ -35,8 +35,8 @@ namespace CS3450.TooRisky
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            XML xml = new XML();
-            Game game = xml.Read();
+            //XML xml = new XML();
+            //Game game = xml.Read();
         }
 
         /// <summary>
