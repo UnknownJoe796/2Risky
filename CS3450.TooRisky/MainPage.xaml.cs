@@ -19,6 +19,8 @@ using Windows.UI;
 using CS3450.TooRisky.Views;
 using System.Linq;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media.Imaging;
+using Placement = CS3450.TooRisky.Model.Placement;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -60,7 +62,6 @@ namespace CS3450.TooRisky
                     var cc = _countryControllers.First(a => a.CountryName == co.Name);
                     cc.UpdateOwnerPlayer(p.Key);
                     cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
-
                 }
             }
 
@@ -83,6 +84,12 @@ namespace CS3450.TooRisky
                 PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P5].TotalUnits);
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
                 PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P6].TotalUnits);
+
+            //Update Turn Phase Label
+            EndTurnButton.Label = Game.Instance.CurrentPhase == TurnPhase.Move ? "End Turn" : "End Phase";
+
+            //Update Hint text
+            HintText.Text = Constants.CurrentHintText;
 
 
         }
@@ -144,11 +151,16 @@ namespace CS3450.TooRisky
                 Game.Instance.AddPlayer(p);
             }
             Game.Instance.RandomlyAssignCountries();
+            Game.Instance.CurrentPlayerNumber =
+                (PlayerNumber) Constants.RandomGen.Next(1, Game.Instance.Players.Count + 1);
+
+            //wire up country controllers
             foreach (var c in Game.Instance.Countries)
             {
                 var contr = new CountryController(c.Key);
                 contr.Button.Click += (sender, args) =>
                 {
+                    if (!contr.ThisPlayersTurn) return;
                     System.Diagnostics.Debug.WriteLine("Second controller event");
                     if (_attacksForShown != null)
                     {
@@ -158,6 +170,7 @@ namespace CS3450.TooRisky
                         {
                             MainGrid.Children.Remove(a.Key);
                         }
+
                         foreach (var m in mToRemove)
                         {
                             MainGrid.Children.Remove(m.Key);
@@ -181,23 +194,42 @@ namespace CS3450.TooRisky
                     {
                         _attacksForShown = contr.CountryName;
                         System.Diagnostics.Debug.WriteLine("Adding arrows");
-                        foreach (var a in contr.Attacks)
+                        switch (Game.Instance.CurrentPhase)
                         {
-                            #region Attack Click Handler
-                            a.Key.Tapped += (o, eventArgs) =>
-                            {
-                                a.Value.Execute(Constants.RandomGen);
-                                UpdateUi();
-                            };
-                            #endregion
-                            MainGrid.Children.Add(a.Key);
+                            case TurnPhase.Placement:
+                                Placement pl = new Placement()
+                                {
+                                    ToName = contr.CountryName
+                                };
+                                if (pl.IsValid())
+                                    pl.Execute(null);
+                                break;
+                            case TurnPhase.Attack:
+                                foreach (var a in contr.Attacks)
+                                {
+                                    #region Attack Click Handler
 
-                        }
-                        foreach (var m in contr.Moves)
-                        {
-                            MainGrid.Children.Add(m.Key);
+                                    a.Key.Tapped += (o, eventArgs) =>
+                                    {
+                                        a.Value.Execute(Constants.RandomGen);
+                                        UpdateUi();
+                                    };
+
+                                    #endregion
+
+                                    MainGrid.Children.Add(a.Key);
+
+                                }
+                                break;
+                            default:    //TurnPhase.Move
+                                foreach (var m in contr.Moves)
+                                {
+                                    MainGrid.Children.Add(m.Key);
+                                }
+                                break;
                         }
                     }
+                    UpdateUi();
                 };
                 _countryControllers.Add(contr);
                 MainGrid.Children.Add(_countryControllers.Last().Button);
@@ -275,14 +307,29 @@ namespace CS3450.TooRisky
             //Show Game log
         }
 
-        private void ForfeitButton_Click(object sender, RoutedEventArgs e)
+        private async void ForfeitButton_Click(object sender, RoutedEventArgs e)
         {
-            Game.Instance.ForfeitCurrentPlayer();
+            var img = new Image();
+            XamlAnimatedGif.AnimationBehavior.SetSourceUri(img, new Uri("ms-appx:///Assets/Forfeit.gif"));
+            var dialog = new ContentDialog()
+            {
+                Title = "You sure you wanna forfeit?",
+                PrimaryButtonText = "Yes, I suck",
+                SecondaryButtonText = "Keep Playing",
+                Content = img,
+            };
+            dialog.PrimaryButtonClick += (contentDialog, args) =>
+            {
+                Game.Instance.ForfeitCurrentPlayer();
+            };
+            await dialog.ShowAsync();
+            
         }
 
         private void EndPhase_Click(object sender, RoutedEventArgs e)
         {
             Game.Instance.EndCurrentPhase();
+            UpdateUi();
         }
     }
 }
