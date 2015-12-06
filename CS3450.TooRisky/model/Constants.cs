@@ -10,6 +10,7 @@ namespace CS3450.TooRisky.Model
 {
     static class Constants
     {
+        public static string CurrentHintText = "Welcome to 2Risky. Hints appear here";
         public static readonly Random RandomGen = new Random();
         public static readonly int InitialNumOfUnits = 3;
         public static readonly Brush AttackColor = new SolidColorBrush(Colors.DarkRed);
@@ -26,7 +27,7 @@ namespace CS3450.TooRisky.Model
                     c = Colors.Green;
                     break;
                 case PlayerNumber.P2:
-                    c = Colors.Blue;
+                    c = Colors.DodgerBlue;
                     break;
                 case PlayerNumber.P3:
                     c = Colors.Red;
