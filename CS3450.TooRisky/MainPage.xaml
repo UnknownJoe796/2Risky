@@ -5,29 +5,29 @@
     xmlns:local="using:CS3450.TooRisky"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:CS3450.TooRisky.Views"
     mc:Ignorable="d" Width="1280" Height="720" MaxWidth="1281" MaxHeight="721" MinWidth="1279" MinHeight="719" Foreground="White">
     <Page.TopAppBar>
         <CommandBar>
-            <!--            <CommandBar.Content>
+            <CommandBar.Content>
                 <Grid>
-                    ~1~<TextBlock Text="New Game" ToolTipService.ToolTip="Starts a new game. Leaves current game." FontSize="26.667" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                @1@
-                    <ListView x:Name="PlayerList"
-                             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                ScrollViewer.HorizontalScrollMode="Enabled"                  
-                                ScrollViewer.VerticalScrollMode="Disabled"
-                             ItemsSource="{x:Bind ViewModel.Players}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap"/>
-                                    <TextBlock Text="{Binding TotalUnits}" TextWrapping="NoWrap"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110 "/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+                    <views:PlayerView x:Name="PlayerView1" Grid.Column="0"/>
+                    <views:PlayerView x:Name="PlayerView2" Grid.Column="1"/>
+                    <views:PlayerView x:Name="PlayerView3" Grid.Column="2"/>
+                    <views:PlayerView x:Name="PlayerView4" Grid.Column="3"/>
+                    <views:PlayerView x:Name="PlayerView5" Grid.Column="4"/>
+                    <views:PlayerView x:Name="PlayerView6" Grid.Column="5"/>
+
                 </Grid>
-            </CommandBar.Content>-->
+            </CommandBar.Content>
             <AppBarButton x:Name="NewGameButton" Icon="NewWindow" Label="New Game" Click="NewGameButton_Click"></AppBarButton>
             <AppBarButton x:Name="ForfeitButton" Icon="Cancel" Label="Forfeit"></AppBarButton>
             <AppBarButton x:Name="GameLogButton" Icon="List" Label="Game Log" Click="HelpButton_Click"/>
@@ -38,12 +38,14 @@
         </CommandBar>
     </Page.TopAppBar>
 
-    <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}">
+    <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}" Tapped="MainGrid_Tapped">
         <Image x:Name="Map" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"  Source="Assets/RiskMap.png"  Stretch="Fill"/>
 
 
         <Grid x:Name="PlayerStats" HorizontalAlignment="Left" Height="350" Margin="-20,371
               ,0,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="-0.272,1.026" Background="LightGray">
+
+            <TextBlock x:Name="Coord" Margin="30,30,30,30">0,0</TextBlock>
         </Grid>
 
     </Grid>

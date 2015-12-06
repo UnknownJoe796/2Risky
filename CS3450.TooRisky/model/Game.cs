@@ -15,14 +15,13 @@ namespace CS3450.TooRisky.Model
     {
         #region singleton magic
         //possibly move this to another class to preserve serializationability
-        private static Game _instance;
 
-        public static Game Instance => _instance ?? (_instance = new Game());
+        public static Game Instance { get; set; }
 
         public static Game DisposeAndAcreateNewGame()
         {
-            _instance = new Game();
-            return _instance;
+            Instance = new Game();
+            return Instance;
         }
 
         #endregion

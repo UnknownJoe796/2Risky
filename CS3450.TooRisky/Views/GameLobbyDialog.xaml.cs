@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CS3450.TooRisky
 {
-    public sealed partial class GameLobbyDialog : ContentDialog
+    public sealed partial class GameLobbyDialog
     {
         public GameLobbyDialog()
         {
