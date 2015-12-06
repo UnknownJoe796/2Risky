@@ -2,8 +2,8 @@
 <Map image="imageName.jpg">
 	<Zone name="Murica" bonus="5">
 		<Country name="Alaska">
-		   <X>110</X>
-		   <Y>160</Y>
+		   <X>80</X>
+		   <Y>120</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthwestTerritory
@@ -17,8 +17,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="NorthwestTerritory">
-		   <X>290</X>
-		   <Y>170</Y>
+		   <X>200</X>
+		   <Y>125</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Alaska
@@ -35,8 +35,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Greenland">
-		   <X>720</X>
-		   <Y>100</Y>
+		   <X>500</X>
+		   <Y>75</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthwestTerritory
@@ -53,8 +53,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Alberta">
-		   <X>290</X>
-		   <Y>240</Y>
+		   <X>200</X>
+		   <Y>175</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthwestTerritory
@@ -71,8 +71,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Ontario">
-		   <X>440</X>
-		   <Y>240</Y>
+		   <X>295</X>
+		   <Y>185</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthwestTerritory
@@ -95,8 +95,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Quebec">
-		   <X>560</X>
-		   <Y>240</Y>
+		   <X>390</X>
+		   <Y>180</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Greenland
@@ -110,8 +110,8 @@
 			</Adjacent>
 		</Country>	
 		<Country name="WesternUS">
-		   <X>310</X>
-		   <Y>330</Y>
+		   <X>210</X>
+		   <Y>240</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Alberta
@@ -128,8 +128,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="EasternUS">
-		   <X>450</X>
-		   <Y>330</Y>
+		   <X>310</X>
+		   <Y>255</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Ontario
@@ -146,8 +146,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="CentralMurica">
-		   <X>320</X>
-		   <Y>430</Y>
+		   <X>225</X>
+		   <Y>310</Y>
 		   <Adjacent>
 				<AdjCountry>
 					WesternUS
@@ -165,8 +165,8 @@
 
 	<Zone name="Europe" bonus="5">
 		<Country name="Iceland">
-		   <X>770</X>
-		   <Y>200</Y>
+		   <X>545</X>
+		   <Y>145</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Greenland
@@ -180,8 +180,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="Scandinavia">
-		   <X>900</X>
-		   <Y>200</Y>
+		   <X>615</X>
+		   <Y>135</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Iceland
@@ -198,8 +198,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Ukraine">
-		   <X>1030</X>
-		   <Y>250</Y>
+		   <X>725</X>
+		   <Y>185</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Scandinavia
@@ -222,8 +222,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="GreatBritain">
-		   <X>790</X>
-		   <Y>280</Y>
+		   <X>550</X>
+		   <Y>210</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Iceland
@@ -240,8 +240,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="NorthEurope">
-		   <X>870</X>
-		   <Y>290</Y>
+		   <X>610</X>
+		   <Y>220</Y>
 		   <Adjacent>
 				<AdjCountry>
 					GreatBritain
@@ -261,8 +261,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="WestEurope">
-		   <X>770</X>
-		   <Y>360</Y>
+		   <X>550</X>
+		   <Y>265</Y>
 		   <Adjacent>
 				<AdjCountry>
 					GreatBritain
@@ -279,8 +279,8 @@
 			</Adjacent>
 		</Country>	
 		<Country name="SouthEurope">
-		   <X>890</X>
-		   <Y>360</Y>
+		   <X>625</X>
+		   <Y>265</Y>
 		   <Adjacent>
 				<AdjCountry>
 					WestEurope
@@ -308,8 +308,8 @@
 
 	<Zone name="Asia" bonus="7">
 		<Country name="Ural">
-		   <X>1220</X>
-		   <Y>220</Y>
+		   <X>860</X>
+		   <Y>170</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Ukraine
@@ -326,8 +326,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="Siberia">
-		   <X>1330</X>
-		   <Y>220</Y>
+		   <X>940</X>
+		   <Y>150</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Ural
@@ -347,8 +347,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Yakutsk">
-		   <X>1530</X>
-		   <Y>150</Y>
+		   <X>1050</X>
+		   <Y>120</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Siberia
@@ -362,8 +362,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Kamchatka">
-		   <X>1710</X>
-		   <Y>150</Y>
+		   <X>1185</X>
+		   <Y>130</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Alaska
@@ -383,8 +383,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Irkutsk">
-		   <X>1450</X>
-		   <Y>220</Y>
+		   <X>1020</X>
+		   <Y>185</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Siberia
@@ -401,8 +401,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Mongolia">
-		   <X>1500</X>
-		   <Y>300</Y>
+		   <X>1050</X>
+		   <Y>235</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Siberia
@@ -422,8 +422,8 @@
 			</Adjacent>
 		</Country>	
 		<Country name="Japan">
-		   <X>1610</X>
-		   <Y>300</Y>
+		   <X>1135</X>
+		   <Y>250</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Kamchatka
@@ -434,8 +434,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Afghanistan">
-		   <X>1170</X>
-		   <Y>330</Y>
+		   <X>825</X>
+		   <Y>250</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Ukraine
@@ -455,8 +455,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="China">
-		   <X>1380</X>
-		   <Y>390</Y>
+		   <X>960</X>
+		   <Y>300</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Afghanistan
@@ -479,8 +479,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="MiddleEast">
-		   <X>1050</X>
-		   <Y>450</Y>
+		   <X>735</X>
+		   <Y>330</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Egypt
@@ -503,8 +503,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="India">
-		   <X>1250</X>
-		   <Y>450</Y>
+		   <X>880</X>
+		   <Y>360</Y>
 		   <Adjacent>
 				<AdjCountry>
 					MiddleEast
@@ -521,8 +521,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Siam">
-		   <X>1400</X>
-		   <Y>500</Y>
+		   <X>975</X>
+		   <Y>375</Y>
 		   <Adjacent>
 				<AdjCountry>
 					China
@@ -540,8 +540,8 @@
 
 	<Zone name="SuckyMurica" bonus="2">
 		<Country name="Venezuela">
-		   <X>400</X>
-		   <Y>530</Y>
+		   <X>285</X>
+		   <Y>386</Y>
 		   <Adjacent>
 				<AdjCountry>
 					CentralMurica
@@ -555,8 +555,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="Peru">
-		   <X>360</X>
-		   <Y>640</Y>
+		   <X>250</X>
+		   <Y>460</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Venzuela
@@ -570,8 +570,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Brazil">
-		   <X>530</X>
-		   <Y>610</Y>
+		   <X>380</X>
+		   <Y>450</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Venzuela
@@ -588,8 +588,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Argentina">
-		   <X>450</X>
-		   <Y>770</Y>
+		   <X>305</X>
+		   <Y>555</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Peru
@@ -604,8 +604,8 @@
 
 	<Zone name="Africa" bonus="3">
 		<Country name="NorthAfrica">
-		   <X>770</X>
-		   <Y>530</Y>
+		   <X>550</X>
+		   <Y>395</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Brazil
@@ -628,8 +628,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="Egypt">
-		   <X>920</X>
-		   <Y>490</Y>
+		   <X>645</X>
+		   <Y>355</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthAfrica
@@ -646,8 +646,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Congo">
-		   <X>890</X>
-		   <Y>660</Y>
+		   <X>630</X>
+		   <Y>485</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NorthAfrica
@@ -661,8 +661,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="EastAfrica">
-		   <X>980</X>
-		   <Y>600</Y>
+		   <X>690</X>
+		   <Y>425</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Egypt
@@ -679,8 +679,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="SouthAfrica">
-		   <X>890</X>
-		   <Y>790</Y>
+		   <X>630</X>
+		   <Y>570</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Congo
@@ -694,8 +694,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="Madagascar">
-		   <X>1050</X>
-		   <Y>780</Y>
+		   <X>745</X>
+		   <Y>565</Y>
 		   <Adjacent>
 				<AdjCountry>
 					SouthAfrica
@@ -710,8 +710,8 @@
 
 	<Zone name="Australia" bonus="2">
 		<Country name="Indonesia">
-		   <X>1420</X>
-		   <Y>630</Y>
+		   <X>1010</X>
+		   <Y>460</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Siam
@@ -725,8 +725,8 @@
 		   </Adjacent>
 		</Country>
 		<Country name="NewGuinea">
-		   <X>1630</X>
-		   <Y>630</Y>
+		   <X>1145</X>
+		   <Y>465</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Indonesia
@@ -740,8 +740,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="WestAustralia">
-		   <X>1430</X>
-		   <Y>750</Y>
+		   <X>1010</X>
+		   <Y>560</Y>
 		   <Adjacent>
 				<AdjCountry>
 					Indonesia
@@ -755,8 +755,8 @@
 			</Adjacent>
 		</Country>
 		<Country name="EastAustralia">
-		   <X>1580</X>
-		   <Y>750</Y>
+		   <X>1125</X>
+		   <Y>555</Y>
 		   <Adjacent>
 				<AdjCountry>
 					NewGuinea

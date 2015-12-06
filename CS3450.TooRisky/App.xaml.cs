@@ -34,9 +34,6 @@ namespace CS3450.TooRisky
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            XML xml = new XML();
-            Game game = xml.Read();
         }
 
         /// <summary>
