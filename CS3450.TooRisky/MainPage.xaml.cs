@@ -316,7 +316,11 @@ namespace CS3450.TooRisky
                 Title = "You sure you wanna forfeit?",
                 PrimaryButtonText = "Yes, I suck",
                 SecondaryButtonText = "Keep Playing",
-                Content = img
+                Content = img,
+            };
+            dialog.PrimaryButtonClick += (contentDialog, args) =>
+            {
+                //TODO add forfeit handler call
             };
             await dialog.ShowAsync();
         }
