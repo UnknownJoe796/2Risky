@@ -9,8 +9,8 @@
     Title="Enter Player Names"
     PrimaryButtonText="Start"
     SecondaryButtonText="Back">
-    
 
+    <StackPanel>
     <Grid x:Name="PlayerGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="85"/>
@@ -18,7 +18,6 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -27,5 +26,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
     </Grid>
+        <TextBlock Foreground="Black">Leave unneeded player fields blank. Player 1 gets to go first.</TextBlock>
+    </StackPanel>
     
 </ContentDialog>

@@ -10,6 +10,7 @@ namespace CS3450.TooRisky.Model
 {
     static class Constants
     {
+        public static readonly Random RandomGen = new Random();
         public static readonly int InitialNumOfUnits = 3;
         public static readonly Brush AttackColor = new SolidColorBrush(Colors.DarkRed);
         public static readonly Brush MoveColor = new SolidColorBrush(Colors.DarkBlue);

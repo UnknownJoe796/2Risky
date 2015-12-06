@@ -40,7 +40,7 @@ namespace CS3450.TooRisky.Model
         /// The number of units the player can still move this turn.
         /// This will be decremented when a unit is placed and refilled at the beginning of a turn.
         /// </summary>
-        public int UnitsToMove = 0;
+        public int UnitsToMove = 10;
              
 
         /// <summary>

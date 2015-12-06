@@ -12,12 +12,12 @@
             <CommandBar.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="110 "/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="120 "/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
                     </Grid.ColumnDefinitions>
                     <views:PlayerView x:Name="PlayerView1" Grid.Column="0"/>
                     <views:PlayerView x:Name="PlayerView2" Grid.Column="1"/>
@@ -29,8 +29,8 @@
                 </Grid>
             </CommandBar.Content>
             <AppBarButton x:Name="NewGameButton" Icon="Add" Label="New Game" Click="NewGameButton_Click"></AppBarButton>
-            <AppBarButton x:Name="ForfeitButton" Icon="Cancel" Label="Forfeit"></AppBarButton>
-            <AppBarButton x:Name="GameLogButton" Icon="List" Label="Game Log" Click="HelpButton_Click"/>
+            <AppBarButton x:Name="ForfeitButton" Icon="Cancel" Label="Forfeit" Click="ForfeitButton_Click"></AppBarButton>
+            <AppBarButton x:Name="GameLogButton" Icon="List" Label="Game Log" Click="GameLogButton_Click"/>
             <AppBarButton x:Name="HelpButton" Icon="Help" Label="Help" Click="HelpButton_Click"/>
 
             <AppBarButton x:Name="AboutButton" Icon="OtherUser" Label="About" Click="AboutButton_Click"/>
@@ -49,12 +49,12 @@
             <TextBlock x:Name="Coord" Margin="30,30,30,30">0,0</TextBlock>
         </Grid> -->
 
-        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Center" Height="22" Margin="0,700,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="700"/>
-        <TextBlock x:Name="HintText" HorizontalAlignment="Center" Margin="0,700,0,0" TextWrapping="Wrap" Text="Hints Appear Here." VerticalAlignment="Top" RenderTransformOrigin="0.355,1.867" Foreground="Black"/>
-        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="200" Margin="0,520,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="200"/>
-        <TextBlock x:Name="YourName" HorizontalAlignment="Left" Margin="20,540,0,0" TextWrapping="Wrap" Text="This Pl Name" VerticalAlignment="Top" Foreground="Black" FontSize="21.333"/>
+        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Center" Height="22" Margin="-10,652,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="700"/>
+        <TextBlock x:Name="HintText" HorizontalAlignment="Center" Margin="0,652,0,0" TextWrapping="Wrap" Text="Hints Appear Here." VerticalAlignment="Top" RenderTransformOrigin="0.355,1.867" Foreground="Black"/>
+        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="200" Margin="0,472,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="200"/>
+        <TextBlock x:Name="YourName" HorizontalAlignment="Left" Margin="20,492,0,0" TextWrapping="Wrap" Text="This Pl Name" VerticalAlignment="Top" Foreground="Black" FontSize="21.333"/>
         <Grid HorizontalAlignment="Left" Height="120
-" Margin="20,585,0,0" VerticalAlignment="Top" Width="152">
+" Margin="20,537,0,0" VerticalAlignment="Top" Width="152">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>

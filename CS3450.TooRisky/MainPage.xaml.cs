@@ -31,15 +31,16 @@ namespace CS3450.TooRisky
     {
         private List<CountryController> _countryControllers;
 
+        private string _attacksForShown = null;
+
         public MainPage()
         {
             this.InitializeComponent();
             Map.Width = this.Width;
             Map.InvalidateArrange();
-            this.SizeChanged += MainPage_SizeChanged;
+            //this.SizeChanged += MainPage_SizeChanged;
             _countryControllers = new List<CountryController>();
             NewGameButton_Click(this, null);
-            
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -86,13 +87,12 @@ namespace CS3450.TooRisky
 
         }
 
-
         private async void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             var content = new ContentDialog()
             {
                 Title = "New Game",
-                Content = "What kind of game would you like to play?",
+                Content = "What kind of game would you like to play?\r\n(Sorry, you actually have no choice as we didn't get to implement networked games)",
                 PrimaryButtonText = "Local",
                 SecondaryButtonText = "Network",
                 IsSecondaryButtonEnabled = false
@@ -146,11 +146,63 @@ namespace CS3450.TooRisky
             Game.Instance.RandomlyAssignCountries();
             foreach (var c in Game.Instance.Countries)
             {
-                _countryControllers.Add(new CountryController(c.Key));
+                var contr = new CountryController(c.Key);
+                contr.Button.Click += (sender, args) =>
+                {
+                    System.Diagnostics.Debug.WriteLine("Second controller event");
+                    if (_attacksForShown != null)
+                    {
+                        var aToRemove = _countryControllers.First(a => a.CountryName == _attacksForShown).Attacks;
+                        var mToRemove = _countryControllers.First(a => a.CountryName == _attacksForShown).Moves;
+                        foreach (var a in aToRemove)
+                        {
+                            MainGrid.Children.Remove(a.Key);
+                        }
+                        foreach (var m in mToRemove)
+                        {
+                            MainGrid.Children.Remove(m.Key);
+                        }
+                        _attacksForShown = null;
+                    }
+                    if (!contr.ArrowsShown)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Removing arrows");
+
+                        foreach (var a in contr.Attacks)
+                        {
+                            MainGrid.Children.Remove(a.Key);
+                        }
+                        foreach (var m in contr.Moves)
+                        {
+                            MainGrid.Children.Remove(m.Key);
+                        }
+                    }
+                    else
+                    {
+                        _attacksForShown = contr.CountryName;
+                        System.Diagnostics.Debug.WriteLine("Adding arrows");
+                        foreach (var a in contr.Attacks)
+                        {
+                            #region Attack Click Handler
+                            a.Key.Tapped += (o, eventArgs) =>
+                            {
+                                a.Value.Execute(Constants.RandomGen);
+                                UpdateUi();
+                            };
+                            #endregion
+                            MainGrid.Children.Add(a.Key);
+
+                        }
+                        foreach (var m in contr.Moves)
+                        {
+                            MainGrid.Children.Add(m.Key);
+                        }
+                    }
+                };
+                _countryControllers.Add(contr);
                 MainGrid.Children.Add(_countryControllers.Last().Button);
             }
-
-
+       
             //Set Player Views
             PlayerView1.SetPlayer(Game.Instance.Players[PlayerNumber.P1]);
             PlayerView2.SetPlayer(Game.Instance.Players[PlayerNumber.P2]);
@@ -215,7 +267,17 @@ namespace CS3450.TooRisky
         private void MainGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
-            //Coord.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
+            YourName.Text = e.GetPosition(MainGrid).X.ToString() + "," + e.GetPosition(MainGrid).Y.ToString();
+        }
+
+        private void GameLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Show Game log
+        }
+
+        private void ForfeitButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

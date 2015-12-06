@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\GameLog.cs" />
     <Compile Include="Views\CountryController.cs" />
     <Compile Include="Views\GameLobbyDialog.xaml.cs">
       <DependentUpon>GameLobbyDialog.xaml</DependentUpon>
