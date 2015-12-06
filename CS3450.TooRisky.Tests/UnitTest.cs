@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace CS3450.TooRisky.Tests
 {
@@ -9,7 +9,6 @@ namespace CS3450.TooRisky.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            Assert.IsTrue(true);
         }
     }
 }

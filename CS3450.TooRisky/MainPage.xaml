@@ -5,9 +5,73 @@
     xmlns:local="using:CS3450.TooRisky"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:views="using:CS3450.TooRisky.Views"
+    mc:Ignorable="d" Width="1280" Height="720" MaxWidth="1281" MaxHeight="721" MinWidth="1279" MinHeight="719" Foreground="White">
+    <Page.TopAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120 "/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <views:PlayerView x:Name="PlayerView1" Grid.Column="0"/>
+                    <views:PlayerView x:Name="PlayerView2" Grid.Column="1"/>
+                    <views:PlayerView x:Name="PlayerView3" Grid.Column="2"/>
+                    <views:PlayerView x:Name="PlayerView4" Grid.Column="3"/>
+                    <views:PlayerView x:Name="PlayerView5" Grid.Column="4"/>
+                    <views:PlayerView x:Name="PlayerView6" Grid.Column="5"/>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                </Grid>
+            </CommandBar.Content>
+            <AppBarButton x:Name="NewGameButton" Icon="Add" Label="New Game" Click="NewGameButton_Click"></AppBarButton>
+            <AppBarButton x:Name="ForfeitButton" Icon="Cancel" Label="Forfeit" Click="ForfeitButton_Click"></AppBarButton>
+            <AppBarButton x:Name="GameLogButton" Icon="List" Label="Game Log" Click="GameLogButton_Click"/>
+            <AppBarButton x:Name="HelpButton" Icon="Help" Label="Help" Click="HelpButton_Click"/>
+
+            <AppBarButton x:Name="AboutButton" Icon="OtherUser" Label="About" Click="AboutButton_Click"/>
+            <AppBarButton x:Name="EndTurnButton" Icon="Accept" Label="End Turn" Click="EndPhase_Click"/>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Grid x:Name="MainGrid" Background="{ThemeResource SystemChromeAltLowColor}" Tapped="MainGrid_Tapped">
+        <Image x:Name="Map" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"  Source="Assets/classicMap.png"  Stretch="Fill"/>
+
+
+        <!--
+        <Grid x:Name="PlayerStats" HorizontalAlignment="Left" Height="350" Margin="-20,371
+              ,0,0" VerticalAlignment="Top" Width="220" RenderTransformOrigin="-0.272,1.026" Background="LightGray">
+
+            <TextBlock x:Name="Coord" Margin="30,30,30,30">0,0</TextBlock>
+        </Grid> -->
+
+        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Center" Height="22" Margin="-10,652,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="700"/>
+        <TextBlock x:Name="HintText" HorizontalAlignment="Center" Margin="0,652,0,0" TextWrapping="Wrap" Text="Hints Appear Here." VerticalAlignment="Top" RenderTransformOrigin="0.355,1.867" Foreground="Black"/>
+        <Rectangle Fill="#FFE6E6E6" HorizontalAlignment="Left" Height="200" Margin="0,472,0,0" Stroke="#FFE6E6E6" VerticalAlignment="Top" Width="200"/>
+        <TextBlock x:Name="YourName" HorizontalAlignment="Left" Margin="20,492,0,0" TextWrapping="Wrap" Text="This Pl Name" VerticalAlignment="Top" Foreground="Black" FontSize="21.333"/>
+        <Grid HorizontalAlignment="Left" Height="120
+" Margin="20,537,0,0" VerticalAlignment="Top" Width="152">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap">Units To Place: </TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap">Units To Move:</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black">Zone Bonus:</TextBlock>
+
+            <TextBlock x:Name="UnitsToPlaceLabel" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap">0</TextBlock>
+            <TextBlock x:Name="UnitsToMoveLabel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Foreground="Black" TextWrapping="Wrap" HorizontalAlignment="Right">0</TextBlock>
+            <TextBlock x:Name="ZoneBonusLabel" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black">0</TextBlock>
+        </Grid>
 
     </Grid>
 </Page>

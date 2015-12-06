@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS3450.TooRisky.model
+namespace CS3450.TooRisky.Model
 {
     /// <summary>
     /// Represents a continent in the game.
@@ -36,9 +36,27 @@ namespace CS3450.TooRisky.model
             List<Country> countries = new List<Country>();
             foreach (string name in CountryNames)
             {
-                countries.Add(game.countries[name]);
+                countries.Add(game.Countries[name]);
             }
             return countries;
+        }
+
+        /// <summary>
+        /// Returns whether or not the given player owns this continent.
+        /// </summary>
+        /// <param name="game">The game that this continent is a part of.</param>
+        /// <param name="playerName">The name of the player who may own this country.</param>
+        /// <returns>Whether or not the given player owns this continent.</returns>
+        public bool OwnedByName(Game game, PlayerNumber playerName)
+        {
+            foreach(Country country in Countries(game))
+            {
+                if(country.OwnedBy != playerName)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
