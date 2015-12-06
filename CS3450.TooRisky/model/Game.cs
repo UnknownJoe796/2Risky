@@ -126,24 +126,18 @@ namespace CS3450.TooRisky.Model
             }
         }
         
-        public bool HasWon()
+        public bool GameOver()
         {
-            PlayerNumber tmpNum = PlayerNumber.None;
-            foreach (KeyValuePair<string, Country> entry in Countries)
+            var activePlayers = 0;
+            foreach (KeyValuePair<PlayerNumber, Player> entry in Players)
             {
-                if(tmpNum == PlayerNumber.None)
+                if(entry.Value.IsActive)
                 {
-                    tmpNum = entry.Value.OwnedBy;
+                    activePlayers++;
                 }
-                else
-                {
-                    if(tmpNum != entry.Value.OwnedBy)
-                    {
-                        return false;
-                    }
-                }
+                
             }
-            return true;
+            return activePlayers == 1;
         }
 
         public void EndCurrentPhase()
@@ -177,6 +171,7 @@ namespace CS3450.TooRisky.Model
             }
             CurrentPhase = TurnPhase.Placement;
             EndCurrentPlayerTurn();
+
         }
 
         public void EndCurrentPlayerTurn()
