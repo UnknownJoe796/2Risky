@@ -132,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\classic.xml" />
-    <Content Include="Assets\RiskMap.png" />
+    <Content Include="Assets\classicMap.png" />
     <Content Include="Data\StaticStrings.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
