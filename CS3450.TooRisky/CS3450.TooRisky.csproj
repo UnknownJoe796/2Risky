@@ -138,7 +138,6 @@
     <Content Include="Assets\classic.xml" />
     <Content Include="Assets\classicMap.png" />
     <Content Include="Assets\Forfeit.gif" />
-    <Content Include="Data\StaticStrings.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
