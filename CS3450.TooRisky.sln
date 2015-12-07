@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS3450.TooRisky", "CS3450.TooRisky\CS3450.TooRisky.csproj", "{6BA1D492-5EF2-4E1D-9C1D-AFC3F5A21915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS3450.TooRisky.Tests", "CS3450.TooRisky.UniversalTests\CS3450.TooRisky.Tests.csproj", "{A109A986-FFF4-47AB-B07C-A2332E2D6ABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS3450.TooRisky.Tests", "CS3450.TooRisky.Tests\CS3450.TooRisky.Tests.csproj", "{A109A986-FFF4-47AB-B07C-A2332E2D6ABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
