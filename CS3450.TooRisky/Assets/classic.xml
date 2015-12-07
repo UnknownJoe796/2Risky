@@ -482,6 +482,12 @@
 		   <X>735</X>
 		   <Y>330</Y>
 		   <Adjacent>
+        <AdjCountry>
+          Ukraine
+        </AdjCountry>
+        <AdjCountry>
+          SouthEurope
+        </AdjCountry>
 				<AdjCountry>
 					Egypt
 				</AdjCountry>
@@ -489,13 +495,7 @@
 					EastAfrica
 				</AdjCountry>
 				<AdjCountry>
-					Ukraine
-				</AdjCountry>
-				<AdjCountry>
 					Afghanistan
-				</AdjCountry>
-				<AdjCountry>
-					SouthEurope
 				</AdjCountry>
 				<AdjCountry>
 					India
@@ -524,11 +524,11 @@
 		   <X>975</X>
 		   <Y>375</Y>
 		   <Adjacent>
+        <AdjCountry>
+          India
+        </AdjCountry>
 				<AdjCountry>
 					China
-				</AdjCountry>
-				<AdjCountry>
-					India
 				</AdjCountry>
 				<AdjCountry>
 					Indonesia
@@ -634,14 +634,14 @@
 				<AdjCountry>
 					NorthAfrica
 				</AdjCountry>
+        <AdjCountry>
+          EastAfrica
+        </AdjCountry>
 				<AdjCountry>
 					SouthEurope
 				</AdjCountry>
 				<AdjCountry>
 					MiddleEast
-				</AdjCountry>
-				<AdjCountry>
-					EastAfrica
 				</AdjCountry>
 			</Adjacent>
 		</Country>
@@ -668,14 +668,17 @@
 					Egypt
 				</AdjCountry>
 				<AdjCountry>
-					MiddleEast
-				</AdjCountry>
-				<AdjCountry>
 					Congo
 				</AdjCountry>
+         <AdjCountry>
+          SouthAfrica
+         </AdjCountry>
 				<AdjCountry>
 					Madagascar
 				</AdjCountry>
+        <AdjCountry>
+          MiddleEast
+        </AdjCountry>
 			</Adjacent>
 		</Country>
 		<Country name="SouthAfrica">
