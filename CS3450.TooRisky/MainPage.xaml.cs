@@ -37,8 +37,9 @@ namespace CS3450.TooRisky
 
         private ContentDialog _forfeitDialog;
 
-        private ContentDialog _winDialog;
-
+        /// <summary>
+        /// Constructor. Initializes components and tries to force a resize
+        /// </summary>
         public MainPage()
         {
             this.InitializeComponent();
@@ -49,6 +50,11 @@ namespace CS3450.TooRisky
             NewGameButton_Click(this, null);
         }
 
+        /// <summary>
+        /// This should keep the window size constant, but doesn't seem to work very well
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.Width = 1280;
@@ -56,6 +62,9 @@ namespace CS3450.TooRisky
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Updates the UI for anything that may have changed after a game action - attack/move etc.
+        /// </summary>
         public async void UpdateUi()
         {
             //Check for game over
@@ -80,7 +89,7 @@ namespace CS3450.TooRisky
             }
 
             //update country buttons
-            foreach (var p in Game.Instance.Players)
+/*            foreach (var p in Game.Instance.Players)
             {
                 foreach (var co in p.Value.CountriesOwned)
                 {
@@ -88,6 +97,14 @@ namespace CS3450.TooRisky
                     cc.UpdateOwnerPlayer(p.Key);
                     cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
                 }
+            }*/
+
+            //Show non-owned countries grey. this is bad, I know
+            foreach (var c in Game.Instance.Countries)
+            {
+                var cc = _countryControllers.First(a => a.CountryName == c.Value.Name);
+                cc.UpdateOwnerPlayer(c.Value.OwnedBy);
+                cc.UpdateUnitsCt(Game.Instance.Countries[c.Value.Name].Units);
             }
 
             //Set Player Views
@@ -100,8 +117,6 @@ namespace CS3450.TooRisky
             //Update Hint text
             HintText.Text = Constants.CurrentHintText;
 
-
-
             //UpdatePlayerStats
             YourName.Text = Game.Instance.Players[Game.Instance.CurrentPlayerNumber].Name + "'s turn";
             CountriesOwnedLabel.Text =
@@ -112,6 +127,12 @@ namespace CS3450.TooRisky
                 Game.Instance.Players[Game.Instance.CurrentPlayerNumber].ContinentsOwned.Sum(a => a.Worth).ToString();
         }
 
+
+        /// <summary>
+        /// Handles starting of a new game. Shows new game dialogs and creates a new game object.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             var content = new ContentDialog()
@@ -158,6 +179,13 @@ namespace CS3450.TooRisky
             await content.ShowAsync();
         }
 
+        /// <summary>
+        /// Initializes the game object. This is called by NewGame_ButtonClick.
+        /// Dumps old game data if there is any.
+        /// Assigns countries.
+        /// Click listeners for country buttons and their arrows are set here.
+        /// </summary>
+        /// <param name="players"></param>
         public void InitGame(List<Player> players)
         {
 
@@ -281,11 +309,13 @@ namespace CS3450.TooRisky
             }
             //Update everything else we'd normally update after every action
             Constants.CurrentHintText = Constants.PlacementHint;
-
             UpdateUi();
 
         }
 
+        /// <summary>
+        /// Sets the 6 players views on top.
+        /// </summary>
         public void SetPlayerViews()
         {
             //Set Player Views
@@ -323,42 +353,34 @@ namespace CS3450.TooRisky
 
             //Update Player Views Unit Ct
             //P1
-            if(Game.Instance.Players[PlayerNumber.P1].IsActive)
-                PlayerView1.SetUnitsCt(Game.Instance.Players[PlayerNumber.P1].TotalUnits);
-            else
-                PlayerView1.SetForfeited();
+            PlayerView1.UpdateStatus(Game.Instance.Players[PlayerNumber.P1].IsActive, Game.Instance.Players[PlayerNumber.P1].TotalUnits);
 
             //P2
-            if (Game.Instance.Players[PlayerNumber.P2].IsActive)
-                PlayerView2.SetUnitsCt(Game.Instance.Players[PlayerNumber.P2].TotalUnits);
-            else 
-                PlayerView2.SetForfeited();
+            PlayerView2.UpdateStatus(Game.Instance.Players[PlayerNumber.P2].IsActive, Game.Instance.Players[PlayerNumber.P2].TotalUnits);
+
             //P3
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P3))
-                if (Game.Instance.Players[PlayerNumber.P3].IsActive)
-                    PlayerView3.SetUnitsCt(Game.Instance.Players[PlayerNumber.P3].TotalUnits);
-                else
-                    PlayerView3.SetForfeited();
+                PlayerView3.UpdateStatus(Game.Instance.Players[PlayerNumber.P3].IsActive, Game.Instance.Players[PlayerNumber.P3].TotalUnits);
+
             //P4
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
-                if (Game.Instance.Players[PlayerNumber.P4].IsActive)
-                    PlayerView4.SetUnitsCt(Game.Instance.Players[PlayerNumber.P4].TotalUnits);
-                else
-                    PlayerView4.SetForfeited();
+                PlayerView4.UpdateStatus(Game.Instance.Players[PlayerNumber.P4].IsActive, Game.Instance.Players[PlayerNumber.P4].TotalUnits);
+
             //P5
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
-                if (Game.Instance.Players[PlayerNumber.P5].IsActive)
-                    PlayerView5.SetUnitsCt(Game.Instance.Players[PlayerNumber.P5].TotalUnits);
-                else
-                    PlayerView5.SetForfeited();
+                PlayerView5.UpdateStatus(Game.Instance.Players[PlayerNumber.P5].IsActive, Game.Instance.Players[PlayerNumber.P5].TotalUnits);
+
             //P6
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
-                if (Game.Instance.Players[PlayerNumber.P6].IsActive)
-                    PlayerView6.SetUnitsCt(Game.Instance.Players[PlayerNumber.P6].TotalUnits);
-                else
-                    PlayerView6.SetForfeited();
+                PlayerView6.UpdateStatus(Game.Instance.Players[PlayerNumber.P6].IsActive, Game.Instance.Players[PlayerNumber.P6].TotalUnits);
+
         }
 
+        /// <summary>
+        /// Shows help dialog to desribe game play.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void HelpButton_Click(object sender, RoutedEventArgs e)
         {
             string content = "A game of 2Risky is played by players taking turns.\n";
@@ -389,11 +411,17 @@ namespace CS3450.TooRisky
             await cd.ShowAsync();
         }
 
+        /// <summary>
+        /// Shows the awesome about screen which credits the even awesomer authors.
+        /// Adds link to the project github
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             string content = "This project was created in the Fall of 2015 ";
             content += "as the final project\n for CS3450.\n\nIt was created by:\n";
-            content += "Derek Hunter\t\t\tGreg Vernon\nFabio Göttlicher\t\t\tJustin Young\nNate Ashby\t\t\tJoe Ivey";
+            content += "Derek Hunter\t\t\tGreg Vernon\nFabio Göttlicher\t\t\tJustin Young\nNate Ashby\t\t\tJoe Ivie";
             ContentDialog cd = new ContentDialog()
             {
                 Title = "About",
@@ -412,6 +440,11 @@ namespace CS3450.TooRisky
             await cd.ShowAsync();
         }
 
+        /// <summary>
+        /// This handles showing the game log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void GameLogButton_Click(object sender, RoutedEventArgs e)
         {
             var gameLogDialog = new GameLogDialog();
@@ -419,6 +452,11 @@ namespace CS3450.TooRisky
             await gameLogDialog.ShowAsync();
         }
 
+        /// <summary>
+        /// This handles a player forfeiting.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ForfeitButton_Click(object sender, RoutedEventArgs e)
         {
             var img = new Image();
@@ -437,9 +475,14 @@ namespace CS3450.TooRisky
             };
             
             await _forfeitDialog.ShowAsync();
-            
+            //_countryControllers.ForEach(e => e.UpdateOwnerPlayer());
         }
 
+        /// <summary>
+        /// Ends the current turn phase or player's turn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EndPhase_Click(object sender, RoutedEventArgs e)
         {
             Game.Instance.EndCurrentPhase();
@@ -447,6 +490,10 @@ namespace CS3450.TooRisky
             UpdateUi();
         }
 
+        /// <summary>
+        /// This should remove all of the action arrows on the screen.
+        /// Doesn't always work 100%, not sure why. Probably a timing error.
+        /// </summary>
         private void RemoveActionArrows()
         {
             foreach (SymbolIcon a in MainGrid.Children.OfType<SymbolIcon>())
