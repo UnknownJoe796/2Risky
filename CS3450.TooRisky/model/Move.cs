@@ -72,7 +72,7 @@ namespace CS3450.TooRisky.Model
             if (from.OwnedBy != player.PlayerNumber) return false;
             if (to.OwnedBy != player.PlayerNumber) return false;
             if (from.Units < 2) return false;
-            if (player.UnitsToMove < 2) return false;
+            if (player.UnitsToMove < 1) return false;
             return true;
         }
 
