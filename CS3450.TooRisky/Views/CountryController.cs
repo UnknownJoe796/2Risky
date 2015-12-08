@@ -76,6 +76,12 @@ namespace CS3450.TooRisky.Views
                 {
                     var to = Game.Instance.Countries[a.ToName];
                     var tup = GetArrowPosAndRotation(X, Y, to.X, to.Y);
+                    //custom arrow position for Kamchatka/Alaska
+                    if (to.Name == "Alaska" && CountryName == "Kamchatka")
+                        tup = Tuple.Create(new Thickness(1230, 130, 0, 0), 90.0);
+                    if(to.Name == "Kamchatka" && CountryName == "Alaska")
+                        tup = Tuple.Create(new Thickness(40, 120, 0, 0), 270.0);
+
                     var s = new SymbolIcon
                     {
                         HorizontalAlignment = HorizontalAlignment.Left,
@@ -97,6 +103,12 @@ namespace CS3450.TooRisky.Views
                 {
                     var to = Game.Instance.Countries[a.ToName];
                     var tup = GetArrowPosAndRotation(X, Y, to.X, to.Y);
+                    //custom arrow position for Kamchatka/Alaska
+                    if (to.Name == "Alaska" && CountryName == "Kamchatka")
+                        tup = Tuple.Create(new Thickness(1230, 130, 0, 0), 90.0);
+                    if (to.Name == "Kamchatka" && CountryName == "Alaska")
+                        tup = Tuple.Create(new Thickness(40, 120, 0, 0), 270.0);
+
                     var s = new SymbolIcon
                     {
                         HorizontalAlignment = HorizontalAlignment.Left,
