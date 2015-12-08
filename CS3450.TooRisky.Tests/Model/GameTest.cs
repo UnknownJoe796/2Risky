@@ -36,7 +36,7 @@ namespace CS3450.TooRisky.Tests.Model
             country = new Country()
             {
                 Name = "Testistan",
-                Units = 1,
+                Units = 2,
                 X = 0,
                 Y = 0,
                 OwnedBy = PlayerNumber.P1
@@ -48,7 +48,7 @@ namespace CS3450.TooRisky.Tests.Model
             country = new Country()
             {
                 Name = "Testlyvania",
-                Units = 1,
+                Units = 3,
                 X = 10,
                 Y = 0,
                 OwnedBy = PlayerNumber.P1
@@ -60,7 +60,7 @@ namespace CS3450.TooRisky.Tests.Model
             country = new Country()
             {
                 Name = "Testanbul",
-                Units = 1,
+                Units = 2,
                 X = 0,
                 Y = 10,
                 OwnedBy = PlayerNumber.P2
