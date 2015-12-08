@@ -47,10 +47,30 @@ namespace CS3450.TooRisky.Views
             PlayerUnits.Text = $"Units: {unitsCt}";
         }
 
-        public void SetForfeited()
+        public void SetForfeited(bool forfeited)
         {
-            PlayerUnits.Text = "#Rekt";
-            PlayerIcon.Symbol = Symbol.Delete;
+            if (forfeited)
+            {
+                PlayerUnits.Text = "#Rekt";
+                PlayerIcon.Symbol = Symbol.Delete;
+
+            }
+
+        }
+
+        public void UpdateStatus(bool isActive, int unitsCt)
+        {
+            if (!isActive)
+            {
+                PlayerUnits.Text = "#Rekt";
+                PlayerIcon.Symbol = Symbol.Delete;
+
+            }
+            else
+            {
+                PlayerIcon.Symbol = Symbol.Contact;
+                PlayerUnits.Text = $"Units: {unitsCt}";
+            }
         }
     }
 }

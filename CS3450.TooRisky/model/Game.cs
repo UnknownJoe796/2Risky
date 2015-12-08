@@ -104,15 +104,6 @@ namespace CS3450.TooRisky.Model
                 country.Value.OwnedBy = (PlayerNumber) random.Next(1, Instance.Players.Count + 1);
                 country.Value.Units = Constants.InitialNumOfUnits;
             }
-
-/*            var randomizedPlayers = new List<Player>(Players.Values.OrderBy(a => random.Next()));
-            var randomizedCountries = Countries.Values.OrderBy(a => random.Next());
-            var playerIndex = 0;
-            foreach(var country in randomizedCountries)
-            {
-                country.OwnedByName = randomizedPlayers[playerIndex % randomizedPlayers.Count].Name;
-                playerIndex++;
-            }*/
         }
 
         /// <summary>
@@ -126,6 +117,11 @@ namespace CS3450.TooRisky.Model
             }
         }
         
+
+        /// <summary>
+        /// Checks for win conditions. The UI code asks this every game iteration.
+        /// </summary>
+        /// <returns></returns>
         public bool GameOver()
         {
             var activePlayers = 0;
@@ -140,6 +136,10 @@ namespace CS3450.TooRisky.Model
             return activePlayers == 1;
         }
 
+        /// <summary>
+        /// Ends current turn phase for current player.
+        /// If it's ending move phase (last phase), it goes to next player's placement phase.
+        /// </summary>
         public void EndCurrentPhase()
         {
             if (CurrentPhase == TurnPhase.Placement)
@@ -165,11 +165,14 @@ namespace CS3450.TooRisky.Model
             }
         }
 
+        /// <summary>
+        /// Handles forfeiting of the current player. All of forfeiting player's countries will be assigned to None.
+        /// </summary>
         public void ForfeitCurrentPlayer()
         {
             GameLog.AddEvent(Players[CurrentPlayerNumber].Name + " has given up.");
             Players[CurrentPlayerNumber].IsActive = false;
-            foreach (KeyValuePair<string, Country> entry in Countries)
+            foreach (KeyValuePair<string, Country> entry in Countries.Where(entry => entry.Value.OwnedBy == CurrentPlayerNumber))
             {
                 entry.Value.OwnedBy = PlayerNumber.None;
             }
@@ -178,6 +181,9 @@ namespace CS3450.TooRisky.Model
 
         }
 
+        /// <summary>
+        /// Ends current player's turn and transitions to the next player.
+        /// </summary>
         public void EndCurrentPlayerTurn()
         {
             if (CurrentPlayerNumber == PlayerNumber.P1)
