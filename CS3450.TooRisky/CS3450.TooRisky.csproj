@@ -21,7 +21,7 @@
     <PackageCertificateThumbprint>9B1CB1A89BC7473111A99CDD836FC784A25A6690</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
-    <AppxPackageDir>C:\Users\KeanoFabricio\Desktop\2Risky\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\gottl\Desktop\CS3450.TooRisky\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
