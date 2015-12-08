@@ -21,6 +21,8 @@
     <PackageCertificateThumbprint>9B1CB1A89BC7473111A99CDD836FC784A25A6690</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxPackageDir>C:\Users\KeanoFabricio\Desktop\2Risky\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
