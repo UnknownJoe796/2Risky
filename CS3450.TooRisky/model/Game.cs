@@ -7,8 +7,13 @@ using CS3450.TooRisky.Utils;
 
 namespace CS3450.TooRisky.Model
 {
-
+    /// <summary>
+    /// Represent the player in game
+    /// </summary>
     public enum PlayerNumber { None, P1, P2, P3, P4, P5, P6 }
+    /// <summary>
+    /// Represents the current phase of the move
+    /// </summary>
     public enum TurnPhase { Placement, Attack, Move}
     /// <summary>
     /// Represents the entire game state.

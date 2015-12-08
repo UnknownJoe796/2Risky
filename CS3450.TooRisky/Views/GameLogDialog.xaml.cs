@@ -21,11 +21,17 @@ namespace CS3450.TooRisky.Views
 {
     public sealed partial class GameLogDialog : ContentDialog
     {
+        /// <summary>
+        /// Initializes the game log dialog
+        /// </summary>
         public GameLogDialog()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets content of the game log dialog to the last handful of events.
+        /// </summary>
         public void SetContent()
         {
             LogEntries.Text = string.Join("\r\n", GameLog.Events);

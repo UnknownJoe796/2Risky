@@ -9,17 +9,18 @@
         <controls:SolidColorBrush Color="#00E6E6E6"/>
     </controls:Grid.Background>
     <controls:Ellipse x:Name="PlayerCircle" Fill="#000000" HorizontalAlignment="Left" Height="30
-                      " Margin="5,2,0,0" VerticalAlignment="Top" Width="30
+                      " Margin="5,1,0,0" VerticalAlignment="Top" Width="30
                       " Stroke="#00000000" StrokeThickness="0"/>
-    <controls:SymbolIcon x:Name="PlayerIcon" Symbol="Contact" Height="30" Width="30" Margin="5,2,0,18" HorizontalAlignment="Left">
+    <controls:SymbolIcon x:Name="PlayerIcon" Symbol="Contact" Height="30" Width="30" Margin="5,1,0,17" HorizontalAlignment="Left">
         <controls:SymbolIcon.Foreground>
             <controls:SolidColorBrush Color="{controls:ThemeResource SystemAltMediumColor}"/>
         </controls:SymbolIcon.Foreground>
     </controls:SymbolIcon>
 
-    <controls:TextBlock x:Name="PlayerNumberLabel" TextAlignment="Center" Foreground="Black" TextWrapping="Wrap" Text="Px" Margin="5,29,0,0" Width="30" HorizontalAlignment="Left"/>
-    <controls:TextBlock x:Name="PlayerName" TextWrapping="Wrap" Text="Player" Height="20" Margin="40,5,0,22" HorizontalAlignment="Left"/>
-    <controls:TextBlock x:Name="PlayerUnits" HorizontalAlignment="Left" Margin="40,29,0,0" TextWrapping="Wrap" Text="Units: 0" VerticalAlignment="Top"/>
+    <controls:TextBlock x:Name="PlayerNumberLabel" TextAlignment="Center" Foreground="Black" TextWrapping="Wrap" Text="Px" Margin="5,28,0,1" Width="30" HorizontalAlignment="Left"/>
+    <controls:TextBlock x:Name="PlayerName" TextWrapping="Wrap" Text="Player" Height="20" Margin="40,5,0,23" HorizontalAlignment="Left"/>
+    <controls:TextBlock x:Name="PlayerUnits" HorizontalAlignment="Left" Margin="40,28,0,0" TextWrapping="Wrap" Text="Units: 0" VerticalAlignment="Top"/>
+    <controls:Rectangle x:Name="TurnIndicator" Fill="Black" HorizontalAlignment="Left" Height="3" Margin="0,45,0,0" VerticalAlignment="Top" Width="120"/>
 
 
 </controls:Grid>

@@ -27,7 +27,7 @@ using Placement = CS3450.TooRisky.Model.Placement;
 namespace CS3450.TooRisky
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The main page of the app. This is where all the magic happens
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -89,17 +89,6 @@ namespace CS3450.TooRisky
             }
 
             //update country buttons
-/*            foreach (var p in Game.Instance.Players)
-            {
-                foreach (var co in p.Value.CountriesOwned)
-                {
-                    var cc = _countryControllers.First(a => a.CountryName == co.Name);
-                    cc.UpdateOwnerPlayer(p.Key);
-                    cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
-                }
-            }*/
-
-            //Show non-owned countries grey. this is bad, I know
             foreach (var c in Game.Instance.Countries)
             {
                 var cc = _countryControllers.First(a => a.CountryName == c.Value.Name);
@@ -324,22 +313,34 @@ namespace CS3450.TooRisky
             PlayerView2.SetPlayer(Game.Instance.Players[PlayerNumber.P2]);
 
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P3))
+            {
+                PlayerView3.Visibility = Visibility.Visible;
                 PlayerView3.SetPlayer(Game.Instance.Players[PlayerNumber.P3]);
+            }
             else
                 PlayerView3.Visibility = Visibility.Collapsed;
 
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P4))
+            {
+                PlayerView4.Visibility = Visibility.Visible;
                 PlayerView4.SetPlayer(Game.Instance.Players[PlayerNumber.P4]);
+            }
             else
                 PlayerView4.Visibility = Visibility.Collapsed;
 
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P5))
+            {
+                PlayerView5.Visibility = Visibility.Visible;
                 PlayerView5.SetPlayer(Game.Instance.Players[PlayerNumber.P5]);
+            }
             else
                 PlayerView5.Visibility = Visibility.Collapsed;
 
             if (Game.Instance.Players.ContainsKey(PlayerNumber.P6))
+            {
+                PlayerView6.Visibility = Visibility.Visible;
                 PlayerView6.SetPlayer(Game.Instance.Players[PlayerNumber.P6]);
+            }
             else
                 PlayerView6.Visibility = Visibility.Collapsed;
 

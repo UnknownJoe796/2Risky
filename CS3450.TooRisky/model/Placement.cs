@@ -90,6 +90,11 @@ namespace CS3450.TooRisky.Model
             return true;
         }
 
+        /// <summary>
+        /// Equals override
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

@@ -26,7 +26,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
     </Grid>
-        <TextBlock Foreground="Black" TextWrapping="Wrap">Leave unneeded player fields blank. You need to add at least 2 players. Starting player is chosed randomly.</TextBlock>
+        <TextBlock Foreground="Black" TextWrapping="Wrap">Leave unneeded player fields blank. Names should be 8 characters long or less. You need to add at least 2 players. Starting player is chosen randomly.</TextBlock>
     </StackPanel>
     
 </ContentDialog>
