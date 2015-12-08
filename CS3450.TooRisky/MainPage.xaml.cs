@@ -18,6 +18,7 @@ using System.ComponentModel;
 using Windows.UI;
 using CS3450.TooRisky.Views;
 using System.Linq;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -431,9 +432,10 @@ namespace CS3450.TooRisky
             string content = "This project was created in the Fall of 2015 ";
             content += "as the final project\n for CS3450.\n\nIt was created by:\n";
             content += "Derek Hunter\t\t\tGreg Vernon\nFabio Göttlicher\t\t\tJustin Young\nNate Ashby\t\t\tJoe Ivie";
+            var v = Package.Current.Id.Version;
             ContentDialog cd = new ContentDialog()
             {
-                Title = "About",
+                Title = "About v." + v.Major + "." + v.Minor + "." + v.Build,
                 Width = 500,
                 Height = 500,
                 Content = content,

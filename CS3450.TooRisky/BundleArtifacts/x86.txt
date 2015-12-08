@@ -1,1 +1,0 @@
-MainPackage=C:\Users\KeanoFabricio\Desktop\2Risky\CS3450.TooRisky\bin\x86\Release\CS3450.TooRisky_1.0.4.0_x86.appx
