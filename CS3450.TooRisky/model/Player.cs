@@ -39,7 +39,9 @@ namespace CS3450.TooRisky.Model
 
         public bool IsActive = true;
              
-
+        /// <summary>
+        /// Sets the units to place and move. Should be called at the beginning of each turn.
+        /// </summary>
         public void  SetReinforcments()
         {
             UnitsToPlace = Math.Max(CountriesOwned.Count / 3, 3);

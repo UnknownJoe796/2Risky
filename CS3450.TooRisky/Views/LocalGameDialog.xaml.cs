@@ -22,6 +22,9 @@ namespace CS3450.TooRisky.Views
     {
         public List<TextBox> PlayerNames { get; private set; }
 
+        /// <summary>
+        /// Sets up the player dialog labels and text boxes for names.
+        /// </summary>
         public LocalGameDialog()
         {
             this.InitializeComponent();
@@ -33,11 +36,18 @@ namespace CS3450.TooRisky.Views
                 var block = new TextBlock()
                 {
                     Text = "Player " + (i + 1),
-                    Foreground = ((PlayerNumber) (i + 1)).Color()
-                   
+                    Foreground = ((PlayerNumber) (i + 1)).Color(),
+                    VerticalAlignment = VerticalAlignment.Center
+                    
                 };
 
-                var box = new TextBox();
+                var box = new TextBox
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Height = 32,
+                    MaxLength = 8
+                    
+                };
 
                 PlayerGrid.Children.Add(block);
                 Grid.SetColumn(block, 0);
@@ -49,14 +59,6 @@ namespace CS3450.TooRisky.Views
 
                 PlayerNames.Add(box);
             }
-        }
-
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-        }
-
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
         }
     }
 }

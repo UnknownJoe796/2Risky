@@ -12,6 +12,9 @@ using Windows.ApplicationModel;
 
 namespace CS3450.TooRisky
 {
+    /// <summary>
+    /// Xml reader for reading in countries
+    /// </summary>
     public class XML
     {
         private Game game = Game.DisposeAndAcreateNewGame();
@@ -19,6 +22,11 @@ namespace CS3450.TooRisky
         List<Country> countries = new List<Country>();
         public string map { set; private get; }
         public string image { get; private set;}
+
+        /// <summary>
+        /// Reads in the game map data from a specified xml file. Returns a game created from this.
+        /// </summary>
+        /// <returns></returns>
         public Game Read()
         {
             if (map == null)
