@@ -18,7 +18,9 @@ using System.ComponentModel;
 using Windows.UI;
 using CS3450.TooRisky.Views;
 using System.Linq;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media.Imaging;
 using Placement = CS3450.TooRisky.Model.Placement;
 
@@ -42,6 +44,12 @@ namespace CS3450.TooRisky
         /// </summary>
         public MainPage()
         {
+            var view = ApplicationView.GetForCurrentView();
+            view.TitleBar.BackgroundColor = Color.FromArgb(100, 230, 230, 230);
+            view.TitleBar.ButtonBackgroundColor = Color.FromArgb(100, 230, 230, 230);
+            view.TitleBar.ButtonInactiveBackgroundColor = Color.FromArgb(100, 230, 230, 230);
+            view.TitleBar.ButtonHoverBackgroundColor = Color.FromArgb(100, 200, 200, 200);
+
             this.InitializeComponent();
             Map.Width = this.Width;
             Map.InvalidateArrange();
