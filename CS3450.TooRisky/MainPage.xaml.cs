@@ -98,7 +98,16 @@ namespace CS3450.TooRisky
             }
 
             //update country buttons
-            foreach (var c in Game.Instance.Countries)
+            foreach (var p in Game.Instance.Players)
+            {
+                foreach (var co in p.Value.CountriesOwned)
+                {
+                    var cc = _countryControllers.First(a => a.CountryName == co.Name);
+                    cc.UpdateOwnerPlayer(p.Key);
+                    cc.UpdateUnitsCt(Game.Instance.Countries[co.Name].Units);
+                }
+            }
+            foreach (var c in Game.Instance.Countries.Where(e => e.Value.OwnedBy == PlayerNumber.None))
             {
                 var cc = _countryControllers.First(a => a.CountryName == c.Value.Name);
                 cc.UpdateOwnerPlayer(c.Value.OwnedBy);

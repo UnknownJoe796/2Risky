@@ -65,6 +65,7 @@ namespace CS3450.TooRisky.Views
         /// <param name="units"></param>
         public void UpdateUnitsCt(int units)
         {
+            Button.Content = "";
             Button.Content = units.ToString();
         }
 
